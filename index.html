@@ -31,16 +31,15 @@
 <body>
 
 <div id="container">
-   
-
     <video id="gum-local" autoplay playsinline></video>
+    <button id="showVideo">Open camera</button>
 
     <div id="errorMsg"></div>
 
     <p class="warning"><strong>Warning:</strong> if you're not using headphones, pressing play will cause feedback.</p>
 
     <p>Display the video stream from <code>getUserMedia()</code> in a video element.</p>
-    
+
 </div>
 
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
@@ -53,13 +52,11 @@
  *  tree.
  */
     'use strict';
-
     // Put variables in global scope to make them available to the browser console.
     const constraints = window.constraints = {
         audio: false,
         video: true
     };
-
     function handleSuccess(stream) {
         const video = document.querySelector('video');
         const videoTracks = stream.getVideoTracks();
@@ -68,7 +65,6 @@
         window.stream = stream; // make variable available to browser console
         video.srcObject = stream;
     }
-
     function handleError(error) {
         if (error.name === 'ConstraintNotSatisfiedError') {
             let v = constraints.video;
@@ -80,7 +76,6 @@
         }
         errorMsg(`getUserMedia error: ${error.name}`, error);
     }
-
     function errorMsg(msg, error) {
         const errorElement = document.querySelector('#errorMsg');
         errorElement.innerHTML += `<p>${msg}</p>`;
@@ -88,12 +83,17 @@
             console.error(error);
         }
     }
-
-    async function init() {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    async function init(e) {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
             handleSuccess(stream);
+            e.target.disabled = true;
+        } catch (e) {
+            handleError(e);
+        }
     }
     init();
+    document.querySelector('#showVideo').addEventListener('click', e => init(e));
 </script>
 
 

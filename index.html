@@ -1,60 +1,107 @@
-<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
-    <title>Peer connection</title>
+    <head>
+        <style>
+            html, body {
+                margin: 0;
+            }
+            body {
+                height: 100%;
+            }
+            
+            .container {
+                height: 100vh;
+                display: grid;
+                grid-template-columns: auto;
+            }
 
-    <style>
-    video {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        z-index: -100;
-    }
-</style>
-</head>
+            @media only screen and (min-width: 1020px) {
+                .container {
+                    display: grid;
+                    grid-template-columns: 50% auto;
+                    grid-template-rows: 100%;
+                    grid-template-areas:
+                        "leftSide rightSide";
+                    height: 100vh;
+                }
 
-<body>
+                .leftSide {
+                    grid-area: leftSide;
+                }
+                .rightSide {
+                    grid-area: rightSide;
+                }
+            }
 
-<div id="container">
-    
-    <video id="localVideo" playsinline autoplay muted></video>
+            .container section {
+                padding: 2em;
+            }
 
-    <div class="box">
-        <button id="startButton">Start</button>
-    </div>
+            .container section h1 {
+                text-align: center;
+                font-weight: normal;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <section class="leftSide">
+                <h1>Image from canvas</h1>
+                <canvas id="canvas" width="300" height="300"></canvas>
+            </section>
+            <section class="rightSide">
+                <h1>Image from &lt;video&gt; WebRTC</h1>
+                <video id="localVideo" playsinline autoplay muted></video>
+            </section>
+        </div>
 
-</div>
 
-<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-<script>
-'use strict';
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script>
+            'use strict';
 
-const startButton = document.getElementById('startButton');
+            const FPS = 10;
+            let width, height;
 
-startButton.addEventListener('click', start);
+            const localVideo = document.getElementById('localVideo');
+            const canvas = document.getElementById("canvas");
 
-const localVideo = document.getElementById('localVideo');
+            localVideo.addEventListener('loadedmetadata', function() {
+                width = this.videoWidth;
+                height = this.videoHeight;
+                console.log(`Local video videoWidth: ${this.videoWidth}px, videoHeight: ${this.videoHeight}px`);
+            });
 
-localVideo.addEventListener('loadedmetadata', function() {
-  console.log(`Local video videoWidth: ${this.videoWidth}px,  videoHeight: ${this.videoHeight}px`);
-});
+            function drawOnCanvasFromVideoStream(){
+                let ctx = canvas.getContext("2d");
+                ctx.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
+                
+                //Draw test line on canvas
+                ctx.beginPath();       
+                ctx.moveTo(0, 0);    
+                ctx.lineTo(width, height);  
+                ctx.lineWidth = 10;
+                ctx.strokeStyle = '#ff0000'
+                ctx.stroke();
+                        
+                let img = canvas.toDataURL("image/jpg");
+            }
 
-async function start() {
-  console.log('Requesting local stream');
-  startButton.disabled = true;
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
-    console.log('Received local stream');
-    localVideo.srcObject = stream;
-  } catch (e) {
-    alert(`getUserMedia() error: ${e.name}`);
-  }
-}
+            async function startVideoStreamWebRTC() {
+                console.log('Requesting local stream');
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
+                    console.log('Received local stream');
+                    localVideo.srcObject = stream;
+                } catch (e) {
+                    alert(`getUserMedia() error: ${e.name}`);
+                }                   
+            }
 
-</script>
-
-</body>
+            startVideoStreamWebRTC();
+            //Update canvas every time in interval
+            setInterval(function(){
+                drawOnCanvasFromVideoStream();
+            }, 1000/FPS);
+        </script>
+    </body>
 </html>

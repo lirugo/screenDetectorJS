@@ -16,15 +16,11 @@
     <meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
     <meta itemprop="name" content="WebRTC code samples">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta id="theme-color" name="theme-color" content="#ffffff">
-
+  
     <base target="_blank">
 
     <title>getUserMedia</title>
 
-    <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../../css/main.css">
 
 </head>
 
@@ -32,7 +28,6 @@
 
 <div id="container">
     <video id="gum-local" autoplay playsinline></video>
-    <button id="showVideo">Open camera</button>
 
     <div id="errorMsg"></div>
 
@@ -55,7 +50,14 @@
     // Put variables in global scope to make them available to the browser console.
     const constraints = window.constraints = {
         audio: false,
-        video: true
+        video: {
+            optional: [
+                {minWidth: 300},
+                {minHeight: 300},
+            ],
+            mandatory: {},
+        },
+       
     };
     function handleSuccess(stream) {
         const video = document.querySelector('video');
@@ -83,17 +85,11 @@
             console.error(error);
         }
     }
-    async function init(e) {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia(constraints);
-            handleSuccess(stream);
-            e.target.disabled = true;
-        } catch (e) {
-            handleError(e);
-        }
+    async function init() {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        handleSuccess(stream);
     }
     init();
-    document.querySelector('#showVideo').addEventListener('click', e => init(e));
 </script>
 
 

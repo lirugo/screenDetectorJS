@@ -7,13 +7,13 @@ const localVideo = document.getElementById('localVideo');
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const windowsWidth = window.innerWidth;
-const windowsHeight = window.innerHeight;
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
 //Set canvas size
-canvas.style.width = windowsWidth;
-canvas.style.height = windowsHeight;
-canvas.width  = windowsWidth;
-canvas.height = windowsHeight;
+canvas.style.width = windowWidth;
+canvas.style.height = windowHeight;
+canvas.width  = windowWidth;
+canvas.height = windowHeight;
 
 console.log(`LOG Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
 
@@ -21,8 +21,6 @@ localVideo.addEventListener('loadedmetadata', function() {
     width = this.videoWidth;
     height = this.videoHeight;
     console.log(`LOG Video width: ${this.videoWidth}px, height: ${this.videoHeight}px`);
-
-    setCanvasSize();  
 });
 
 function drawOnCanvasFromVideoStream(){
@@ -58,8 +56,10 @@ async function startVideoStreamWebRTC() {
 startVideoStreamWebRTC();
 
 function drawPhoneFrameOnCanvas(){
+    let offset = 50;
     ctx.beginPath();
-    ctx.rect(20, 20, 250, 200);
+    ctx.rect(offset, offset, windowWidth - offset * 2, windowHeight - offset * 2);
+    ctx.lineWidth = 5;
     ctx.stroke();
 }
 

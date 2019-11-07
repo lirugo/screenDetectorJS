@@ -7,8 +7,8 @@ const localVideo = document.getElementById('localVideo');
 const canvas = document.getElementById("canvas");
 
 function setCanvasSize(){
-    canvas.style.width='100%';
-    canvas.style.height='100%';
+    // canvas.style.width='100%';
+    // canvas.style.height='100%';
     // canvas.width  = canvas.offsetWidth;
     // canvas.height = canvas.offsetHeight;
     console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);

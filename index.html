@@ -63,20 +63,11 @@
             <section class="wrapper">
                 <video id="localVideo" autoplay muted></video>
                 <canvas id="canvas" class="canvas"></canvas>
-                <canvas id="canvasForFrame" class="canvasForFrame"></canvas>
+                <canvas id="canvasForFrame" class="canvasForFrame" style="opacity: 0;"></canvas>
             </section>
         </div>
 
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-        <!-- <script>
-            const canvas = document.getElementById("canvas");
-            const ctx = canvas.getContext("2d");
-
-
-            ctx.beginPath();
-            ctx.rect(20, 20, 550, 500);
-            ctx.stroke();
-        </script> -->
         <script src="main.js"></script>
     </body>
 </html>

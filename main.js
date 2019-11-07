@@ -9,9 +9,10 @@ const canvas = document.getElementById("canvas");
 function setCanvasSize(){
     canvas.style.width='100%';
     canvas.style.height='100%';
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    // canvas.width  = canvas.offsetWidth;
+    // canvas.height = canvas.offsetHeight;
     console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
+    console.log(`Canvas offset width: ${canvas.offsetWidth}px, height: ${canvas.offsetHeight}px`);
 }
 
 console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);

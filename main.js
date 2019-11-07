@@ -41,7 +41,6 @@ async function startVideoStreamWebRTC() {
         console.log('Received local stream');
         localVideo.srcObject = stream;
 
-        setCanvasSize();
     } catch (e) {
         alert(`getUserMedia() error: ${e.name}`);
     }                   

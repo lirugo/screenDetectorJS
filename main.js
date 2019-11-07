@@ -43,8 +43,8 @@ async function startVideoStreamWebRTC() {
             {
                 audio: false, 
                 video: {
-                    width: { ideal: 1440 },
-                    height: { ideal: 1080 },
+                    width: { ideal: 640 },
+                    height: { ideal: 480 },
                 }
             });
         console.log('LOG Received local stream');
@@ -59,9 +59,9 @@ startVideoStreamWebRTC().then(() => {
 });
 
 //Update canvas every time in interval
-setInterval(function(){
-    drawOnCanvasFromVideoStream();
-}, 1000/FPS);
+// setInterval(function(){
+//     drawOnCanvasFromVideoStream();
+// }, 1000/FPS);
 
 
 //Utils

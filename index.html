@@ -43,19 +43,31 @@
                 text-align: center;
                 font-weight: normal;
             }
+
+            canvas {
+                background: red;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            video {
+                position: fixed; right: 0; bottom: 0;
+                min-width: 100%; min-height: 100%;
+                width: auto; height: auto;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <section class="leftSide">
-                <h1>Canvas</h1>
-                <div class="canvasContainer">
-                    <canvas id="canvas"></canvas>
-                </div>
-            </section>
-            <section class="rightSide" style="opacity: 0;">
                 <h1>Image from &lt;video&gt; WebRTC</h1>
                 <video id="localVideo" autoplay muted></video>
+                
+            </section>
+            <section class="rightSide" style="opacity: 0;">
+                <h1>Canvas</h1>
+                <div class="canvasContainer">
+                    <canvas id="canvas" class="canvas"></canvas>
+                </div>
             </section>
         </div>
 

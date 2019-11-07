@@ -1,6 +1,6 @@
 'use strict';
 
-const FPS = 60;
+const FPS = 2;
 let width, height;
 
 const localVideo = document.getElementById('localVideo');
@@ -23,18 +23,6 @@ localVideo.addEventListener('loadedmetadata', function() {
     console.log(`LOG Video width: ${this.videoWidth}px, height: ${this.videoHeight}px`);
 });
 
-function drawOnCanvasFromVideoStream(){
-    ctx.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
-    
-    //Get pixel color
-    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    let pixel = Utils.getHSVXY(imgData, 150, 150);
-    
-    // console.log('LOG pixel ' + pixel)
-
-    let img = canvas.toDataURL("image/jpg");
-}
-
 async function startVideoStreamWebRTC() {
     console.log('LOG Requesting local stream');
     try {
@@ -55,23 +43,71 @@ async function startVideoStreamWebRTC() {
 
 startVideoStreamWebRTC();
 
+const offset = 50;
 function drawPhoneFrameOnCanvas(){
-    let offset = 50;
     ctx.beginPath();
     ctx.rect(offset, offset, windowWidth - offset * 2, windowHeight - offset * 2);
     ctx.lineWidth = 5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(windowWidth/2-offset, windowHeight/2-offset, offset, offset);
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "#FF0000";
     ctx.stroke();
 }
 
 drawPhoneFrameOnCanvas();
 
+const canvasForFrame = document.getElementById("canvasForFrame");
+const ctxFFrame = canvasForFrame.getContext("2d");
+canvasForFrame.style.width = windowWidth;
+canvasForFrame.style.height = windowHeight;
+canvasForFrame.width  = windowWidth;
+canvasForFrame.height = windowHeight;
+
+function drawOnCanvasFromVideoStream(){
+    ctxFFrame.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
+    
+    //Get pixel color
+    let imgData = ctxFFrame.getImageData(0, 0, canvas.width, canvas.height);
+    let isGreen = Utils.isGreenXY(imgData, width/2, height/2);
+    
+    ctx.beginPath();
+    ctx.rect(windowWidth/2-offset, windowHeight/2-offset, offset, offset);
+    ctx.lineWidth = 5;
+    if(isGreen){       
+        ctx.strokeStyle = "#00FF00";       
+    }else{
+        ctx.strokeStyle = "#FF0000";       
+    }
+    ctx.stroke();
+
+}
+
 //Update canvas every time in interval
-// setInterval(function(){
-//     drawOnCanvasFromVideoStream();
-// }, 1000/FPS);
+setInterval(function(){
+    drawOnCanvasFromVideoStream();
+}, 1000/FPS);
 
 //Utils
 class Utils {
+
+    static isGreenXY(imgData, x, y) {
+        let hsv = this.getHSVXY(imgData, x, y);
+        let isGreen = false;
+
+        if(
+            hsv[0] > 70 && hsv[0] < 160 &&
+            hsv[1] > 40 &&
+            hsv[2] > 30
+        ){
+            isGreen = true;
+        }
+
+        console.log(hsv)
+        return isGreen;
+    };
 
     static getHSVXY(imgData, x, y) {
         let rgba = this.getPixel(imgData, y*imgData.width+x);

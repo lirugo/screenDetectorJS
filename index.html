@@ -18,23 +18,16 @@
             @media only screen and (min-width: 1020px) {
                 .container {
                     display: grid;
-                    grid-template-columns: 50% auto;
+                    grid-template-columns: 100;
                     grid-template-rows: 100%;
                     grid-template-areas:
-                        "leftSide rightSide";
+                        "wrapper";
                     height: 100vh;
                 }
 
-                .leftSide {
-                    grid-area: leftSide;
+                .wrapper {
+                    grid-area: wrapper;
                 }
-                .rightSide {
-                    grid-area: rightSide;
-                }
-            }
-
-            .container section {
-                padding: 1em;
             }
 
             .container section h1 {
@@ -45,33 +38,44 @@
             }
 
             canvas {
-                background: red;
-                width: 100% !important;
-                height: 100% !important;
+                z-index: 100;
+                position: fixed; 
+                right: 0; 
+                bottom: 0;
+                min-width: 100%; 
+                min-height: 100%;
+                width: 100%;
+                height: 100%;
             }
+
             video {
-                position: fixed; right: 0; bottom: 0;
-                min-width: 100%; min-height: 100%;
-                width: auto; height: auto;
+                z-index: 1;
+                position: fixed; 
+                right: 0; 
+                bottom: 0;
+                min-width: 100%; 
+                min-height: 100%;
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <section class="leftSide">
-                <h1>Image from &lt;video&gt; WebRTC</h1>
+            <section class="wrapper">
                 <video id="localVideo" autoplay muted></video>
-                
-            </section>
-            <section class="rightSide" style="opacity: 0;">
-                <h1>Canvas</h1>
-                <div class="canvasContainer">
-                    <canvas id="canvas" class="canvas"></canvas>
-                </div>
+                <canvas id="canvas" class="canvas"></canvas>
             </section>
         </div>
 
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <!-- <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+
+            ctx.beginPath();
+            ctx.rect(20, 20, 550, 500);
+            ctx.stroke();
+        </script> -->
         <script src="main.js"></script>
     </body>
 </html>

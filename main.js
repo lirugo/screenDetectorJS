@@ -13,7 +13,6 @@ function setCanvasSize(){
     canvas.height = canvas.offsetHeight;
 }
 
-setCanvasSize();
 console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
 
 localVideo.addEventListener('loadedmetadata', function() {
@@ -41,6 +40,8 @@ async function startVideoStreamWebRTC() {
         const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
         console.log('Received local stream');
         localVideo.srcObject = stream;
+
+        setCanvasSize();
     } catch (e) {
         alert(`getUserMedia() error: ${e.name}`);
     }                   

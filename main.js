@@ -20,14 +20,11 @@ localVideo.addEventListener('loadedmetadata', function() {
     width = this.videoWidth;
     height = this.videoHeight;
     console.log(`LOG Video width: ${this.videoWidth}px, height: ${this.videoHeight}px`);
+
+    setCanvasSize();  
 });
 
-var setCanvasSizeFlag = true;
 function drawOnCanvasFromVideoStream(){
-    if(setCanvasSizeFlag){
-        setCanvasSize();  
-        setCanvasSizeFlag = false;
-    }  
     ctx.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
     
     //Get pixel color
@@ -57,7 +54,9 @@ async function startVideoStreamWebRTC() {
     }                   
 }
 
-startVideoStreamWebRTC();
+startVideoStreamWebRTC().then(() => {
+   
+});
 
 //Update canvas every time in interval
 setInterval(function(){

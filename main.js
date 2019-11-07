@@ -5,52 +5,60 @@ let width, height;
 
 const localVideo = document.getElementById('localVideo');
 const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
 function setCanvasSize(){
-    canvas.style.width="80%";
-    canvas.style.height="80%";
-    // canvas.width  = canvas.offsetWidth;
-    // canvas.height = canvas.offsetHeight;
-    console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
-    console.log(`Canvas offset width: ${canvas.offsetWidth}px, height: ${canvas.offsetHeight}px`);
+    canvas.style.width = width;
+    canvas.style.height = height;
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    console.log(`LOG Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
+    console.log(`LOG Canvas offset width: ${canvas.offsetWidth}px, height: ${canvas.offsetHeight}px`);
 }
-
-console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
-
 
 localVideo.addEventListener('loadedmetadata', function() {
     width = this.videoWidth;
     height = this.videoHeight;
-    console.log(`Video width: ${this.videoWidth}px, height: ${this.videoHeight}px`);
+    console.log(`LOG Video width: ${this.videoWidth}px, height: ${this.videoHeight}px`);
 });
 
+var setCanvasSizeFlag = true;
 function drawOnCanvasFromVideoStream(){
-    let ctx = canvas.getContext("2d");
+    if(setCanvasSizeFlag){
+        setCanvasSize();  
+        setCanvasSizeFlag = false;
+    }  
     ctx.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
     
     //Get pixel color
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixel = Utils.getHSVXY(imgData, 150, 150);
     
-    // console.log('pixel ' + pixel)
+    // console.log('LOG pixel ' + pixel)
 
     let img = canvas.toDataURL("image/jpg");
 }
 
 async function startVideoStreamWebRTC() {
-    console.log('Requesting local stream');
+    console.log('LOG Requesting local stream');
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
-        console.log('Received local stream');
+        const stream = await navigator.mediaDevices.getUserMedia(
+            {
+                audio: false, 
+                video: {
+                    width: { ideal: 1440 },
+                    height: { ideal: 1080 },
+                }
+            });
+        console.log('LOG Received local stream');
         localVideo.srcObject = stream;
-        setCanvasSize();
-
     } catch (e) {
-        alert(`getUserMedia() error: ${e.name}`);
+        console.log(`LOG getUserMedia() error: ${e.name}`);
     }                   
 }
 
 startVideoStreamWebRTC();
+
 //Update canvas every time in interval
 setInterval(function(){
     drawOnCanvasFromVideoStream();

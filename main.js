@@ -1,6 +1,6 @@
 'use strict';
 
-const FPS = 2;
+const FPS = 10;
 let width, height;
 
 const localVideo = document.getElementById('localVideo');

@@ -11,9 +11,11 @@ function setCanvasSize(){
     canvas.style.height='100%';
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
+    console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
 }
 
 console.log(`Canvas width: ${canvas.width}px, height: ${canvas.height}px`);
+
 
 localVideo.addEventListener('loadedmetadata', function() {
     width = this.videoWidth;
@@ -29,7 +31,7 @@ function drawOnCanvasFromVideoStream(){
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixel = Utils.getHSVXY(imgData, 150, 150);
     
-    console.log('pixel ' + pixel)
+    // console.log('pixel ' + pixel)
 
     let img = canvas.toDataURL("image/jpg");
 }
@@ -40,6 +42,7 @@ async function startVideoStreamWebRTC() {
         const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
         console.log('Received local stream');
         localVideo.srcObject = stream;
+        setCanvasSize();
 
     } catch (e) {
         alert(`getUserMedia() error: ${e.name}`);

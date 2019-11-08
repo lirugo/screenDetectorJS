@@ -105,7 +105,7 @@ function sendFrame2Server(frame){
         .post(SEND_FRAME_URL, {
             image: frame
         })
-        .then(res => (console.log(res)));
+        .then(res => (console.log("LOG" + res)));
 }
 
 //Update canvas every time in interval

@@ -1,6 +1,7 @@
 'use strict';
 
 const FPS = 10;
+const SEND_FRAME_URL = "http://192.168.88.244:8080/api/web/";
 let width, height;
 
 const localVideo = document.getElementById('localVideo');
@@ -66,6 +67,7 @@ canvasForFrame.style.height = windowHeight;
 canvasForFrame.width  = windowWidth;
 canvasForFrame.height = windowHeight;
 
+var current_core_mode = "SEND_DATA";
 function drawOnCanvasFromVideoStream(){
     ctxFFrame.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
     
@@ -77,12 +79,33 @@ function drawOnCanvasFromVideoStream(){
     ctx.rect(windowWidth/2-offset, windowHeight/2-offset, offset, offset);
     ctx.lineWidth = 5;
     if(isGreen){       
-        ctx.strokeStyle = "#00FF00";       
+        ctx.strokeStyle = "#00FF00";   
+        canvasFillScreen("green");   
+        
+        if(current_core_mode == "SEND_DATA"){
+            sendFrame2Server(canvasForFrame.toDataURL());
+            current_core_mode = "";
+        }
+        
     }else{
         ctx.strokeStyle = "#FF0000";       
     }
     ctx.stroke();
+}
 
+function canvasFillScreen(color) {
+    ctx.beginPath();
+    ctx.rect(0, 0, windowWidth, windowHeight);
+    ctx.fillStyle = "green";
+    ctx.fill();
+}
+
+function sendFrame2Server(frame){
+    axios
+        .post(SEND_FRAME_URL, {
+            image: frame
+        })
+        .then(res => (console.log(res)));
 }
 
 //Update canvas every time in interval
@@ -105,7 +128,7 @@ class Utils {
             isGreen = true;
         }
 
-        console.log(hsv)
+        // console.log(hsv)
         return isGreen;
     };
 

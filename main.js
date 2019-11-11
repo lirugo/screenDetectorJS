@@ -31,8 +31,14 @@ async function startVideoStreamWebRTC() {
             {
                 audio: false, 
                 video: {
-                    width: { ideal: 640 },
-                    height: { ideal: 480 },
+                    optional: [
+                        {minWidth: 320},
+                        {minWidth: 640},
+                        {minWidth: 1024},
+                        {minWidth: 1280},
+                        {minWidth: 1920},
+                        {minWidth: 2560},
+                      ]
                 }
             });
         console.log('LOG Received local stream');
@@ -56,19 +62,38 @@ function drawPhoneFrameOnCanvas(){
     ctx.lineWidth = 5;
     ctx.strokeStyle = "#FF0000";
     ctx.stroke();
+
+
+    //Side markers
+    ctx.beginPath();
+    ctx.fillStyle = "#00FF00";
+    ctx.fillRect(0, 0, offset*2, offset*2)
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle = "#00FF00";
+    ctx.fillRect(windowWidth-offset*2, windowHeight-offset*2, offset*2, offset*2)
+    ctx.stroke();
 }
 
 drawPhoneFrameOnCanvas();
 
 const canvasForFrame = document.getElementById("canvasForFrame");
 const ctxFFrame = canvasForFrame.getContext("2d");
-canvasForFrame.style.width = windowWidth;
-canvasForFrame.style.height = windowHeight;
-canvasForFrame.width  = windowWidth;
-canvasForFrame.height = windowHeight;
 
 var current_core_mode = "SEND_DATA";
+var setupCanvasForFram = true;
 function drawOnCanvasFromVideoStream(){
+    if(true){
+        canvasForFrame.style.width = width;
+        canvasForFrame.style.height = height;
+        canvasForFrame.width  = width;
+        canvasForFrame.height = height;
+        
+        setupCanvasForFram = false;
+    }
+
+
     ctxFFrame.drawImage(localVideo, 0, 0, width, height, 0, 0, width, height);
     
     //Get pixel color
@@ -128,7 +153,7 @@ class Utils {
             isGreen = true;
         }
 
-        // console.log(hsv)
+        console.log("LOG " + hsv)
         return isGreen;
     };
 

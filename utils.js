@@ -12,8 +12,10 @@ class Utils {
         // if(this.isGreenXY(imgData, x, y-lengthX/2)) count++;
         // if(this.isGreenXY(imgData, x+lengthX/2, y)) count++;
         // if(this.isGreenXY(imgData, x-lengthX/2, y)) count++;
-        if(this.isGreenXY(imgData, x-lengthX/2, y-lengthY/2)) count++;
         if(this.isGreenXY(imgData, x+lengthX/2, y+lengthY/2)) count++;
+        if(this.isGreenXY(imgData, x-lengthX/2, y-lengthY/2)) count++;
+        if(this.isGreenXY(imgData, x+lengthX/2, y-lengthY/2)) count++;
+        if(this.isGreenXY(imgData, x-lengthX/2, y+lengthY/2)) count++;
 
         // if(this.isGreenXY(imgData, x, y+lengthX/2)) count++;
         // if(this.isGreenXY(imgData, x, y-lengthX/2)) count++;

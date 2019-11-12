@@ -65,7 +65,7 @@ class Utils {
 
     static sendImage2Server(image){
         axios
-            .post(SEND_FRAME_URL+"s", {
+            .post(SEND_FRAME_URL, {
                 image: image
             })
             .then(res => { 

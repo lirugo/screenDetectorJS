@@ -43,14 +43,6 @@ class CustomCanvas{
         const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
 
 
-        //Temp black contour
-        const offset = 50;
-        this.ctxMarker.beginPath();
-        this.ctxMarker.strokeStyle = "#000000";
-        this.ctxMarker.rect(offset, offset, WIDNWDOW_WIDTH - offset * 2, WIDNWDOW_HEIGHT - offset * 2);
-        this.ctxMarker.lineWidth = 5;
-        this.ctxMarker.stroke();
-
         let aimTLX = (WIDNWDOW_WIDTH - WIDNWDOW_WIDTH / 1.3);
         let aimTLY = (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / 1.25);
         // Draw red aims
@@ -59,15 +51,7 @@ class CustomCanvas{
         this.ctxMarker.lineWidth = 5;
         this.ctxMarker.rect(aimTLX-lengthX/2, aimTLY-lengthY/2, lengthX, lengthY)
         this.ctxMarker.stroke();
-
-
         
-
-        this.ctxMarker.beginPath();
-        this.ctxMarker.rect(WIDNWDOW_WIDTH/2-offset/2, WIDNWDOW_HEIGHT/2-offset/2, offset, offset);
-        this.ctxMarker.lineWidth = 5;
-        this.ctxMarker.strokeStyle = "#FF0000";
-        this.ctxMarker.stroke();
 
         //Draw green side markers
         //Top left

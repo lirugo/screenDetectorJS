@@ -3,12 +3,15 @@ class VideoStream {
     URL;
     videoElement;
     videoWidth; videoHeight;
+    current_core_mode;
 
     constructor(TAG, FPS, URL, videoElement){
         console.log(TAG + "Init Video Stream")
         this.FPS = FPS;
         this.URL = URL;
         this.videoElement = videoElement;
+
+        this.current_core_mode = "SEND_DATA";
     }
 
     async setupVideoStream(customCanvas){
@@ -31,6 +34,8 @@ class VideoStream {
                             {minWidth: 320},
                             {minWidth: 640},
                             {minWidth: 1024},
+                            {minWidth: 1280},
+                            {minWidth: 1920},
                         ]
                     }
                 });
@@ -44,7 +49,9 @@ class VideoStream {
     }
 
     onEachFrame(customCanvas){
+
         if(this.videoWidth && this.videoWidth){
+            if(this.current_core_mode == "SEND_DATA"){
             let ctxFrame = customCanvas.ctxFrame;
             ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
                             
@@ -52,9 +59,12 @@ class VideoStream {
             let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
             console.log(TAG + isGreen)
-            if(isGreen){
-                customCanvas.fillScreenWithColor();
-                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                if(isGreen){
+                    customCanvas.fillScreenWithColor();
+                    this.current_core_mode = "";
+                    Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+
+                }
 
             }
         }

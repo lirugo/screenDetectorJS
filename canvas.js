@@ -50,15 +50,25 @@ class CustomCanvas{
 
 
         //Side markers
+        //Top left
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(0, 0, WIDNWDOW_WIDTH, offset)
+        this.ctxMarker.fillRect(0, 0, offset, offset)
         this.ctxMarker.stroke();
-        
-
+        //Top right
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = "#00FF00";
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-offset, 0, WIDNWDOW_WIDTH, offset)
+        this.ctxMarker.stroke();
+        //Bottom right
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
         this.ctxMarker.fillRect(WIDNWDOW_WIDTH-offset, WIDNWDOW_HEIGHT-offset, offset, offset)
+        this.ctxMarker.stroke();
+        //Bottom left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = "#00FF00";
+        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-offset, offset, offset)
         this.ctxMarker.stroke();
     }
 

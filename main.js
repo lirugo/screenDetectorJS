@@ -19,8 +19,6 @@ console.log(TAG + "Window size " + WIDNWDOW_WIDTH + "x" + WIDNWDOW_HEIGHT)
 
 //Update canvas every time in interval
 setInterval(function(){
-    
     videoStream.onEachFrame(customCanvas);
-    
 }, 1000/FPS);
 

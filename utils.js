@@ -6,7 +6,7 @@ class Utils {
 
         let count = 0;
                 
-        if(this.isGreenXY(imgData, 50, height-50)) count++;
+        if(this.isGreenXY(imgData, x, y+lengthX)) count++;
 
         console.log(TAG + "COUNT " + count)
     }

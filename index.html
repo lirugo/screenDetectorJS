@@ -48,7 +48,6 @@
                 min-height: 100%;
                 width: 100%;
                 height: 100%;
-                opacity: 0;
             }
 
             .canvasForFrame {
@@ -56,7 +55,6 @@
                 position: fixed; 
                 top: 0; 
                 left: 0;
-                opacity: 0;
             }
 
             video {
@@ -66,16 +64,13 @@
                 bottom: 0;
                 min-width: 100%; 
                 min-height: 100%;
-                opacity: 0;
             }
-
-
 
 
             /* Loader */
             @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
             .processing {
-                opacity: 100;
+                display: none;
                 font-family: 'Montserrat', sans-serif;
             }
             .alert {
@@ -103,8 +98,8 @@
                 height: 100px;
                 margin: 1px;
                 border-radius: 50%;
-                border: 5px solid rgb(85, 255, 0);
-                border-color: rgb(85, 255, 0) transparent;
+                border: 5px solid #f44336;
+                border-color: #f44336 transparent;
                 animation: loader-anim 1.2s linear infinite;
             }
             @keyframes loader-anim {
@@ -119,17 +114,16 @@
     </head>
     <body>
         <div class="container">
-            
-            <div class="processing">
-                <div class="loader"></div>    
-                <div class="alert">Proccessing</span>
-            </div>
-
             <section class="wrapper">
                 <video id="video" autoplay muted></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
                 <canvas id="canvasForFrame" class="canvasForFrame"></canvas>
             </section>
+
+            <div class="processing" id="processing">
+                <div class="loader"></div>    
+                <div class="alert">Proccessing</span>
+            </div>
         </div>
 
         <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>

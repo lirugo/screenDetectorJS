@@ -76,4 +76,8 @@ class Utils {
             });
     }
 
+    static showPreloader(){
+        document.getElementById("processing").style.display = "visible";
+    }
+
 };

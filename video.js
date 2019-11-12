@@ -83,6 +83,7 @@ class VideoStream {
                     return;                    
                 }
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                this.currentCoreMode = "";
             }
         }
     }

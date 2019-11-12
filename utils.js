@@ -70,6 +70,7 @@ class Utils {
             })
             .then(res => { 
                 console.log(TAG + "SEND STATUS " + res.status)
+                Utils.showPreloader("Processing...");
             })
             .catch(error => {
                 console.log(TAG + error)

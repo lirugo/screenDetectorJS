@@ -48,6 +48,7 @@
                 min-height: 100%;
                 width: 100%;
                 height: 100%;
+                opacity: 0;
             }
 
             .canvasForFrame {
@@ -55,6 +56,7 @@
                 position: fixed; 
                 top: 0; 
                 left: 0;
+                opacity: 0;
             }
 
             video {
@@ -64,11 +66,52 @@
                 bottom: 0;
                 min-width: 100%; 
                 min-height: 100%;
+                opacity: 0;
             }
+
+
+
+
+            /* Loader */
+            .loader {
+                position: absolute;
+                left: 50%;
+                margin-left: -50px;
+                top: 50%;
+                margin-top: -50px;
+                z-index: 10;
+                display: inline-block;
+                width: 64px;
+                height: 64px;
+            }
+            .loader:after {
+                content: " ";
+                display: block;
+                width: 46px;
+                height: 46px;
+                margin: 1px;
+                border-radius: 50%;
+                border: 5px solid rgb(85, 255, 0);
+                border-color: rgb(85, 255, 0) transparent;
+                animation: loader-anim 1.2s linear infinite;
+            }
+            @keyframes loader-anim {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+
         </style>
     </head>
     <body>
         <div class="container">
+            
+            <div class="loader"></div>    
+
             <section class="wrapper">
                 <video id="video" autoplay muted></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>

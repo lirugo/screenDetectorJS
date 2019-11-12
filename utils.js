@@ -1,5 +1,17 @@
 class Utils {
 
+    static aimDetected(imgData, x, y, width, height){
+        const lengthX = width / 14 * 1.8;
+        const lengthY = height / 8 * 1.8;
+
+        let count = 0;
+        let isGreen = false;
+
+        isGreen = this.isGreenXY(imgData, x, y);
+
+        console.log(TAG + "COUNT " + count)
+    }
+
     static isGreenXY(imgData, x, y) {
         let hsv = this.getHSVXY(imgData, Math.round(x), Math.round(y));
         let isGreen = false;

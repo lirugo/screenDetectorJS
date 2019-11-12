@@ -69,6 +69,7 @@ class VideoStream {
                 let x = (this.videoWidth - this.videoWidth / 1.3);
                 let y = (this.videoHeight - this.videoHeight / 1.25);
                 let isGreen = Utils.isGreenXY(imgData, x, y);
+                let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
                 // console.log(TAG + isGreen);
                 if(isGreen){
                     customCanvas.fillScreenWithColor("white");
@@ -81,7 +82,7 @@ class VideoStream {
                     this.skippedFrame++;
                     return;                    
                 }
-                Utils.showPreloader("Sending to server...");
+                // Utils.showPreloader("Sending to server...");
                 console.log(TAG + "SEND TO SERVER")
                 // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";

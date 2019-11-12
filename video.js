@@ -20,6 +20,7 @@ class VideoStream {
         this.videoElement.addEventListener('loadedmetadata', function() {
             classThis.videoWidth = this.videoWidth;
             classThis.videoHeight = this.videoHeight;
+            classThis.videoElement.style.width = "100%";
             classThis.videoElement.style.height = "100%";
 
             console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);

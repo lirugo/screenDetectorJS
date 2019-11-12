@@ -4,7 +4,7 @@ const TAG = "WEB LOG TAG - "
 const WIDNWDOW_WIDTH = window.innerWidth;
 const WIDNWDOW_HEIGHT = window.innerHeight;
 const FPS = 2;
-const SEND_FRAME_URL = "https://appr.tc/r/490466505";
+const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
 
 const localVideo = document.getElementById('video');
 const videoStream = new VideoStream(TAG, FPS, SEND_FRAME_URL, localVideo);

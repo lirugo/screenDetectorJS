@@ -20,6 +20,8 @@ class VideoStream {
         this.videoElement.addEventListener('loadedmetadata', function() {
             classThis.videoWidth = this.videoWidth;
             classThis.videoHeight = this.videoHeight;
+            classThis.videoElement.style.height = "100%";
+
             console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
 
             customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
@@ -58,13 +60,11 @@ class VideoStream {
             let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
             console.log(TAG + isGreen)
-                if(isGreen){
-                    customCanvas.fillScreenWithColor();
-                    this.current_core_mode = "";
-                    Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-
-                }
-
+            if(isGreen){
+                customCanvas.fillScreenWithColor();
+                this.current_core_mode = "";
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+            }
             }
         }
     }

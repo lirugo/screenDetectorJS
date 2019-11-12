@@ -52,8 +52,9 @@ class CustomCanvas{
         //Side markers
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(0, 0, offset, offset)
+        this.ctxMarker.fillRect(0, 0, WIDNWDOW_WIDTH, offset)
         this.ctxMarker.stroke();
+        
 
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";

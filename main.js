@@ -3,7 +3,7 @@
 const TAG = "WEB LOG TAG - "
 const WIDNWDOW_WIDTH = window.innerWidth;
 const WIDNWDOW_HEIGHT = window.innerHeight;
-const FPS = 2;
+const FPS = 10;
 const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
 
 const localVideo = document.getElementById('video');

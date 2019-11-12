@@ -68,7 +68,7 @@ class VideoStream {
                 let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
                 if(isGreen){
-                    customCanvas.fillScreenWithColor();
+                    customCanvas.fillScreenWithColor("green");
                     this.currentCoreMode = this.MODE_SEND_DATA;
                 }
             }

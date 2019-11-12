@@ -61,7 +61,7 @@ class VideoStream {
             let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
             let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
-            console.log(TAG + isGreen)
+            // console.log(TAG + isGreen)
             if(isGreen){
                 customCanvas.fillScreenWithColor();
                 this.current_core_mode = "";

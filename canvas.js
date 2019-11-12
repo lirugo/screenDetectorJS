@@ -10,7 +10,6 @@ class CustomCanvas{
         this.canvasMarker = canvasMarker;
         this.canvasFrame = canvasFrame;
 
-
         this.ctxMarker = canvasMarker.getContext("2d");
         this.ctxFrame = canvasFrame.getContext("2d");
         this.canvasFrameCreated = false;
@@ -23,7 +22,7 @@ class CustomCanvas{
             this.canvasFrame.width  = width;
             this.canvasFrame.height = height;
 
-            console.log(TAG + "Canvas frame " + width + "x" + height)
+            console.log(TAG + "Canvas frame size " + width + "x" + height)
             this.canvasFrameCreated = true;
         }
     }
@@ -33,11 +32,13 @@ class CustomCanvas{
         this.canvasMarker.style.height = WIDNWDOW_HEIGHT;
         this.canvasMarker.width  = WIDNWDOW_WIDTH;
         this.canvasMarker.height = WIDNWDOW_HEIGHT;
+
+        console.log(TAG + "Canvas marker size " + WIDNWDOW_WIDTH + "x" + WIDNWDOW_HEIGHT)
     }
 
     drawCanvasMarker(){
-        const halfLengthX = WIDNWDOW_WIDTH / 14;
-        const halfLengthY = WIDNWDOW_HEIGHT / 8;
+        const halfLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
+        const halfLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
         const offset = 50;
         this.ctxMarker.beginPath();
         this.ctxMarker.rect(offset, offset, WIDNWDOW_WIDTH - offset * 2, WIDNWDOW_HEIGHT - offset * 2);

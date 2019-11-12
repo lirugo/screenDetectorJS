@@ -3,15 +3,21 @@ class VideoStream {
     URL;
     videoElement;
     videoWidth; videoHeight;
-    current_core_mode;
+    currentCoreMode;
+    skippedFrame;
+    MODE_PHONE_DETECTING;
+    MODE_SEND_DATA;
 
     constructor(TAG, FPS, URL, videoElement){
         console.log(TAG + "Init Video Stream")
         this.FPS = FPS;
         this.URL = URL;
         this.videoElement = videoElement;
-
-        this.current_core_mode = "SEND_DATA";
+        
+        this.MODE_PHONE_DETECTING = 1;
+        this.MODE_SEND_DATA = 2;
+        this.currentCoreMode = this.MODE_PHONE_DETECTING;
+        this.skippedFrame = 0;
     }
 
     async setupVideoStream(customCanvas){
@@ -54,19 +60,26 @@ class VideoStream {
 
     onEachFrame(customCanvas){
         if(this.videoWidth && this.videoWidth){
-            if(this.current_core_mode == "SEND_DATA"){
             let ctxFrame = customCanvas.ctxFrame;
             ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
-                            
-            let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
-            let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
-            // console.log(TAG + isGreen)
-            if(isGreen){
-                customCanvas.fillScreenWithColor();
-                this.current_core_mode = "";
-                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+            if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
+                let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
+                let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
+
+                if(isGreen){
+                    customCanvas.fillScreenWithColor();
+                    this.currentCoreMode = this.MODE_SEND_DATA;
+                   
+                }
             }
+
+            if(this.currentCoreMode == this.MODE_SEND_DATA){
+                while(skippedFrame < 10){
+                    this.skippedFrame++;
+                    return;                    
+                }
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
             }
         }
     }

@@ -26,8 +26,7 @@ class Utils {
         if(this.isGreenXY(imgData, x+halfLengthX/2, y-halfLengthY/2)) count++;
         if(this.isGreenXY(imgData, x-halfLengthX/2, y+halfLengthY/2)) count++;
 
-
-        console.log(TAG + "COUNT " + count)
+        return count >= 3;
     }
 
     static isGreenXY(imgData, x, y) {

@@ -36,6 +36,8 @@ class CustomCanvas{
     }
 
     drawCanvasMarker(){
+        const halfLengthX = WIDNWDOW_WIDTH / 14;
+        const halfLengthY = WIDNWDOW_HEIGHT / 8;
         const offset = 50;
         this.ctxMarker.beginPath();
         this.ctxMarker.rect(offset, offset, WIDNWDOW_WIDTH - offset * 2, WIDNWDOW_HEIGHT - offset * 2);
@@ -43,32 +45,31 @@ class CustomCanvas{
         this.ctxMarker.stroke();
 
         this.ctxMarker.beginPath();
-        this.ctxMarker.rect(WIDNWDOW_WIDTH/2-offset, WIDNWDOW_HEIGHT/2-offset, offset, offset);
+        this.ctxMarker.rect(WIDNWDOW_WIDTH/2-offset/2, WIDNWDOW_HEIGHT/2-offset/2, offset, offset);
         this.ctxMarker.lineWidth = 5;
         this.ctxMarker.strokeStyle = "#FF0000";
         this.ctxMarker.stroke();
-
 
         //Side markers
         //Top left
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(0, 0, offset, offset)
+        this.ctxMarker.fillRect(0, 0, halfLengthX, halfLengthY)
         this.ctxMarker.stroke();
         //Top right
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-offset, 0, WIDNWDOW_WIDTH, offset)
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-halfLengthX, 0, WIDNWDOW_WIDTH, halfLengthY)
         this.ctxMarker.stroke();
         //Bottom right
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-offset, WIDNWDOW_HEIGHT-offset, offset, offset)
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-halfLengthX, WIDNWDOW_HEIGHT-halfLengthY, halfLengthX, halfLengthY)
         this.ctxMarker.stroke();
         //Bottom left
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = "#00FF00";
-        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-offset, offset, offset)
+        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-halfLengthY, halfLengthX, halfLengthY)
         this.ctxMarker.stroke();
     }
 

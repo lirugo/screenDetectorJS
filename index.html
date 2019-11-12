@@ -73,19 +73,31 @@
 
 
             /* Loader */
+            @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+            .processing {
+                opacity: 100;
+                font-family: 'Montserrat', sans-serif;
+            }
+            .alert {
+                background-color: #f44336; /* Red */
+                color: white;
+                margin-bottom: 15px;
+                padding: 1em;
+                text-align: center;
+            }
             .loader {
                 position: absolute;
-                left: 50%;
-                margin-left: -50px;
-                top: 50%;
-                margin-top: -50px;
-                z-index: 10;
-                display: inline-block;
                 width: 100px;
                 height: 100px;
+                left: 50%;
+                top: 50%;
+                margin-left: -55px;
+                margin-top: -55px;
+                z-index: 10;
+                display: inline-block;
             }
             .loader:after {
-                content: " ";
+                content: "";
                 display: block;
                 width: 100px;
                 height: 100px;
@@ -108,7 +120,10 @@
     <body>
         <div class="container">
             
-            <div class="loader"></div>    
+            <div class="processing">
+                <div class="loader"></div>    
+                <div class="alert">Proccessing</span>
+            </div>
 
             <section class="wrapper">
                 <video id="video" autoplay muted></video>

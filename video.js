@@ -63,13 +63,12 @@ class VideoStream {
             let ctxFrame = customCanvas.ctxFrame;
             ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
 
-            customCanvas.fillScreenWithColor("red");
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
                 let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
                 let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
                 if(isGreen){
-                    customCanvas.fillScreenWithColor("red");
+                    customCanvas.fillScreenWithColor("green");
                     this.currentCoreMode = this.MODE_SEND_DATA;
                 }
             }
@@ -80,11 +79,32 @@ class VideoStream {
                     return;                    
                 }
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-                this.currentCoreMode = "";
 
                 //DELETE BOTTOM
                 this.skippedFrame = 0;
-                customCanvas.fillScreenWithColor();
+                customCanvas.fillScreenWithColor("red");
+                while(this.skippedFrame < 10){
+                    this.skippedFrame++;
+                    return;                    
+                }
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                this.skippedFrame = 0;
+                customCanvas.fillScreenWithColor("blue");
+                while(this.skippedFrame < 10){
+                    this.skippedFrame++;
+                    return;                    
+                }
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                this.skippedFrame = 0;
+                customCanvas.fillScreenWithColor("white");
+                while(this.skippedFrame < 10){
+                    this.skippedFrame++;
+                    return;                    
+                }
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+
+
+                this.currentCoreMode = "";
             }
         }
     }

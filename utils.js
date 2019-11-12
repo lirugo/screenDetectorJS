@@ -1,7 +1,7 @@
 class Utils {
 
     static isGreenXY(imgData, x, y) {
-        let hsv = this.getHSVXY(imgData, x, y);
+        let hsv = this.getHSVXY(imgData, Math.round(x), Math.round(y));
         let isGreen = false;
 
         if(
@@ -12,7 +12,7 @@ class Utils {
             isGreen = true;
         }
 
-        // console.log(TAG + hsv)
+        console.log(TAG + hsv)
         return isGreen;
     };
 

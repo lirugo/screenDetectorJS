@@ -76,6 +76,7 @@ class VideoStream {
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
                 while(skippedFrame < 10){
+                    console.log(TAG + this.skippedFrame);
                     this.skippedFrame++;
                     return;                    
                 }

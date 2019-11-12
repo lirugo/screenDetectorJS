@@ -6,11 +6,11 @@ class Utils {
 
         let count = 0;
                 
-        if(this.isGreenXY(imgData, x, y)) count++;
+        // if(this.isGreenXY(imgData, x, y)) count++;
 
         // if(this.isGreenXY(imgData, x, y+lengthX)) count++;
         // if(this.isGreenXY(imgData, x, y-lengthX)) count++;
-        if(this.isGreenXY(imgData, x+lengthX, y)) count++;
+        if(this.isGreenXY(imgData, x+lengthY, y)) count++;
         // if(this.isGreenXY(imgData, x-lengthX, y)) count++;
         // if(this.isGreenXY(imgData, x-lengthX, y)) count++;
 

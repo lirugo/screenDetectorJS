@@ -71,12 +71,14 @@ class VideoStream {
                     customCanvas.fillScreenWithColor();
                     this.currentCoreMode = this.MODE_SEND_DATA;
                    
+                    console.log(TAG + "green filled");
                 }
             }
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
+
+                console.log(TAG + "MODE_SEND_DATA");
                 while(skippedFrame < 10){
-                    console.log(TAG + this.skippedFrame);
                     this.skippedFrame++;
                     return;                    
                 }

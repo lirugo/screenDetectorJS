@@ -49,7 +49,6 @@ class VideoStream {
     }
 
     onEachFrame(customCanvas){
-
         if(this.videoWidth && this.videoWidth){
             if(this.current_core_mode == "SEND_DATA"){
             let ctxFrame = customCanvas.ctxFrame;

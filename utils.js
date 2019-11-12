@@ -65,10 +65,15 @@ class Utils {
 
     static sendImage2Server(image){
         axios
-            .post(SEND_FRAME_URL, {
+            .post(SEND_FRAME_URL+"s", {
                 image: image
             })
-            .then(res => (console.log("LOG" + res)));
+            .then(res => { 
+                console.log(TAG + "SEND STATUS " + res.status)
+            })
+            .catch(error => {
+                console.log(TAG + error)
+            });
     }
 
 };

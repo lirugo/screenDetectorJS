@@ -82,28 +82,12 @@ class VideoStream {
 
                 //DELETE BOTTOM
                 this.skippedFrame = 0;
-                customCanvas.fillScreenWithColor("red");
-                while(this.skippedFrame < 10){
-                    this.skippedFrame++;
-                    return;                    
-                }
-                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-                this.skippedFrame = 0;
-                customCanvas.fillScreenWithColor("blue");
-                while(this.skippedFrame < 10){
-                    this.skippedFrame++;
-                    return;                    
-                }
-                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-                this.skippedFrame = 0;
                 customCanvas.fillScreenWithColor("white");
                 while(this.skippedFrame < 10){
                     this.skippedFrame++;
                     return;                    
                 }
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-
-
                 this.currentCoreMode = "";
             }
         }

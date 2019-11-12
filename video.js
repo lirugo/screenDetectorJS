@@ -84,7 +84,7 @@ class VideoStream {
                 }
                 Utils.showPreloader("Sending to server...");
                 console.log(TAG + "SEND TO SERVER")
-                // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";
             }
         }

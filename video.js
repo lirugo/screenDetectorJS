@@ -68,7 +68,7 @@ class VideoStream {
                 let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
                 if(isGreen){
-                    customCanvas.fillScreenWithColor();
+                    customCanvas.fillScreenWithColor("white");
                     this.currentCoreMode = this.MODE_SEND_DATA;
                 }
             }
@@ -80,7 +80,7 @@ class VideoStream {
                 }
                 Utils.showPreloader("Sending to server...");
                 console.log(TAG + "SEND TO SERVER")
-                // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 Utils.showPreloader("Processing...");
                 this.currentCoreMode = "";
             }

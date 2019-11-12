@@ -65,7 +65,10 @@ class VideoStream {
 
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
                 let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
-                let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
+
+                let x = (this.videoWidth - this.videoWidth / 1.3);
+                let y = (this.videoHeight - this.videoHeight / 1.25);
+                let isGreen = Utils.isGreenXY(imgData, x, y);
 
                 if(isGreen){
                     customCanvas.fillScreenWithColor("white");

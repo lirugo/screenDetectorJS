@@ -78,7 +78,8 @@ class VideoStream {
                     this.skippedFrame++;
                     return;                    
                 }
-                Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                console.log(TAG + "SEND TO SERVER")
+                // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";
             }
         }

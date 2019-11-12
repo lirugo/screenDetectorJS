@@ -78,13 +78,12 @@ class VideoStream {
                     this.skippedFrame++;
                     return;                    
                 }
-                Utils.showPreloader();
+                Utils.showPreloader("Sending to server...");
                 console.log(TAG + "SEND TO SERVER")
                 // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+                Utils.showPreloader("Processing...");
                 this.currentCoreMode = "";
             }
-
-
         }
     }
 

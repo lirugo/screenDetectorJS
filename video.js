@@ -63,12 +63,13 @@ class VideoStream {
             let ctxFrame = customCanvas.ctxFrame;
             ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
 
+            customCanvas.fillScreenWithColor("red");
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
                 let imgData = ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
                 let isGreen = Utils.isGreenXY(imgData, this.videoWidth/2, this.videoHeight/2);
 
                 if(isGreen){
-                    customCanvas.fillScreenWithColor();
+                    customCanvas.fillScreenWithColor("red");
                     this.currentCoreMode = this.MODE_SEND_DATA;
                 }
             }
@@ -80,6 +81,10 @@ class VideoStream {
                 }
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";
+
+                //DELETE BOTTOM
+                this.skippedFrame = 0;
+                customCanvas.fillScreenWithColor();
             }
         }
     }

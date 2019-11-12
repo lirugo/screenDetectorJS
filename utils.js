@@ -77,7 +77,7 @@ class Utils {
     }
 
     static showPreloader(){
-        document.getElementById("processing").style.display = "visible";
+        document.getElementById("processing").style.visibility = "visible";
     }
 
 };

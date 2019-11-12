@@ -70,8 +70,15 @@
             /* Loader */
             @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
             .processing {
-                display: none;
+                z-index: 4;
+                visibility: hidden;
                 font-family: 'Montserrat', sans-serif;
+                background: white;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
             .alert {
                 background-color: #f44336; /* Red */
@@ -115,11 +122,13 @@
     <body>
         <div class="container">
             <section class="wrapper">
+
+                   
                 <video id="video" autoplay muted></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
                 <canvas id="canvasForFrame" class="canvasForFrame"></canvas>
+              
             </section>
-
             <div class="processing" id="processing">
                 <div class="loader"></div>    
                 <div class="alert">Proccessing</span>

@@ -1,26 +1,31 @@
 class Utils {
 
     static aimDetected(imgData, x, y, width, height){
-        const lengthX = height / 14 * 1.8;
-        const lengthY = width / 8 * 1.8;
+        const halfLengthX = height / 14 * 1.8 / 2;
+        const halfLengthY = width / 8 * 1.8 / 2;
 
         let count = 0;
                 
-        // if(this.isGreenXY(imgData, x, y)) count++;
+        if(this.isGreenXY(imgData, x, y)) count++;
 
-        // if(this.isGreenXY(imgData, x, y+lengthY/2)) count++;
-        // if(this.isGreenXY(imgData, x, y-lengthX/2)) count++;
-        // if(this.isGreenXY(imgData, x+lengthX/2, y)) count++;
-        // if(this.isGreenXY(imgData, x-lengthX/2, y)) count++;
-        if(this.isGreenXY(imgData, x+lengthX/2, y+lengthY/2)) count++;
-        if(this.isGreenXY(imgData, x-lengthX/2, y-lengthY/2)) count++;
-        if(this.isGreenXY(imgData, x+lengthX/2, y-lengthY/2)) count++;
-        if(this.isGreenXY(imgData, x-lengthX/2, y+lengthY/2)) count++;
+        if(this.isGreenXY(imgData, x, y+halfLengthY)) count++;
+        if(this.isGreenXY(imgData, x, y-halfLengthY)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX, y)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX, y)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX, y+halfLengthY)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX, y-halfLengthY)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX, y-halfLengthY)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX, y+halfLengthY)) count++;
 
-        // if(this.isGreenXY(imgData, x, y+lengthX/2)) count++;
-        // if(this.isGreenXY(imgData, x, y-lengthX/2)) count++;
-        // if(this.isGreenXY(imgData, x+lengthX/2, y)) count++;
-        // if(this.isGreenXY(imgData, x-lengthX/2, y)) count++;
+        if(this.isGreenXY(imgData, x, y+halfLengthY/2)) count++;
+        if(this.isGreenXY(imgData, x, y-halfLengthY/2)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX/2, y)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX/2, y)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX/2, y+halfLengthY/2)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX/2, y-halfLengthY/2)) count++;
+        if(this.isGreenXY(imgData, x+halfLengthX/2, y-halfLengthY/2)) count++;
+        if(this.isGreenXY(imgData, x-halfLengthX/2, y+halfLengthY/2)) count++;
+
 
         console.log(TAG + "COUNT " + count)
     }

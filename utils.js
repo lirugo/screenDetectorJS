@@ -12,7 +12,7 @@ class Utils {
             isGreen = true;
         }
 
-        console.log(TAG + hsv)
+        // console.log(TAG + hsv)
         return isGreen;
     };
 

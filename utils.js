@@ -5,9 +5,8 @@ class Utils {
         const lengthY = height / 8 * 1.8;
 
         let count = 0;
-        let isGreen = false;
-
-        isGreen = this.isGreenXY(imgData, x, y);
+                
+        if(this.isGreenXY(imgData, x, y)) count++;
 
         console.log(TAG + "COUNT " + count)
     }

@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    3
+                    4
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -179,6 +179,11 @@
                 classThis.video.style.height = "100%";
 
                 console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
+
+                canvasForFrame.style.width = videoWidth;
+                canvasForFrame.style.height = videoHeight;
+                canvasForFrame.width  = videoWidth;
+                canvasForFrame.height = videoHeight;
             });
         </script>
 

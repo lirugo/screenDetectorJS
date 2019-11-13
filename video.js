@@ -32,7 +32,10 @@ class VideoStream {
             console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
 
             customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
-   });
+
+            Utils.showPreloader("", "hidden");
+
+          });
 
         try {
             const stream = await navigator.mediaDevices.getUserMedia(

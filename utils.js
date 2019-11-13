@@ -95,7 +95,8 @@ class Utils {
     static sendImage2Server(image){
         axios
             .post(SEND_FRAME_URL, {
-                image: image
+                userAgent: window.navigator.userAgent,
+                image: image,
             })
             .then(res => { 
                 console.log(TAG + "SEND STATUS " + res.status)

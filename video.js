@@ -34,6 +34,9 @@ class VideoStream {
             customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
 
             Utils.showPreloader("", "hidden");
+
+            // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+            console.log(window.navigator.oscpu)
         });
 
         try {
@@ -51,11 +54,10 @@ class VideoStream {
                         ]
                     }
                 });
-
-
             console.log(TAG + 'Video stream setup');
             localVideo.srcObject = stream;
         } catch (e) {
+            Utils.showPreloader(`Video stream error: ${e.name}`, "visible");
             console.log(TAG + `Video stream error: ${e.name}`);
         }    
     }

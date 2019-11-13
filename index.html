@@ -128,11 +128,11 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    2
+                    3
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
-                <!-- <canvas id="canvasForFrame" class="canvasForFrame" style="opacity: 0;"></canvas> -->
+                <canvas id="canvasForFrame" class="canvasForFrame" ></canvas>
                 
             </section>
         </div>
@@ -184,8 +184,10 @@
 
         <!-- Canvas Market -->
         <script>
-            let canvasMarker = document.getElementById('canvasMarker');
-            let ctxMarker = canvasMarker.getContext("2d");
+            var canvasMarker = document.getElementById('canvasMarker');
+            var ctxMarker = canvasMarker.getContext("2d");
+            var canvasForFrame = document.getElementById('canvasForFrame');
+            var ctxForFrame = canvasForFrame.getContext("2d");
         
             canvasMarker.style.width = WIDNWDOW_WIDTH;
             canvasMarker.style.height = WIDNWDOW_HEIGHT;
@@ -232,24 +234,30 @@
 
         <!-- OnEachFrame -->
         <script>
-            if(videoWidth && videoWidth){
-                let ctxFrame = customCanvas.ctxFrame;
-                ctxFrame.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth, videoHeight);
+            function onEachFrame(){
+                if(videoWidth && videoWidth){
+                    let ctxFrame = ctxForFrame;
+                    ctxFrame.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth, videoHeight);
 
-                if(currentCoreMode == MODE_PHONE_DETECTING){
-                    let imgData = ctxFrame.getImageData(0, 0, videoWidth, videoHeight);
+                    // if(currentCoreMode == MODE_PHONE_DETECTING){
+                    //     let imgData = ctxFrame.getImageData(0, 0, videoWidth, videoHeight);
 
-                    let x = (videoWidth - videoWidth / 1.3);
-                    let y = (videoHeight - videoHeight / 1.25);
-                    let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
+                    //     let x = (videoWidth - videoWidth / 1.3);
+                    //     let y = (videoHeight - videoHeight / 1.25);
+                    //     let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
 
-                    // console.log(TAG + isGreen);
-                    if(aimDetected){
-                        customCanvas.fillScreenWithColor("white");
-                        currentCoreMode = MODE_SEND_DATA;
-                    }
+                    //     // console.log(TAG + isGreen);
+                    //     if(aimDetected){
+                    //         // customCanvas.fillScreenWithColor("white");
+                    //         // currentCoreMode = MODE_SEND_DATA;
+                    //     }
+                    // }
                 }
             }
+
+            setInterval(function(){
+               onEachFrame();
+            }, 1000/10);
         </script>
 
 

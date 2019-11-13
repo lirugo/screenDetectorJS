@@ -95,7 +95,7 @@ class Utils {
     static sendImage2Server(image){
         axios
             .post(SEND_FRAME_URL, {
-                userAgent: window.navigator.userAgent,
+                deviceModel: Utils.getModelFromUserAgent(),
                 image: image,
             })
             .then(res => { 
@@ -110,6 +110,18 @@ class Utils {
     static showPreloader(message, visibility){
         document.getElementById("processing").style.visibility = visibility;
         document.getElementById("alert-message").innerHTML = message;
+    }
+
+    static getModelFromUserAgent(){
+        let userAgentArray = window.navigator.userAgent.split(" ");
+
+        let model = "";
+        let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
+        for(let i = 4; i<buildIndex; i++){
+            model += userAgentArray[i] + " ";
+        }
+
+        return model;
     }
 
 };

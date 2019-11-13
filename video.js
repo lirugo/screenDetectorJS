@@ -35,8 +35,8 @@ class VideoStream {
 
             Utils.showPreloader("", "hidden");
 
-            // Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
-            console.log(window.navigator.oscpu)
+            Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
+          
         });
 
         try {

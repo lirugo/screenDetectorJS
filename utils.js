@@ -99,15 +99,15 @@ class Utils {
             })
             .then(res => { 
                 console.log(TAG + "SEND STATUS " + res.status)
-                Utils.showPreloader("Processing...");
+                Utils.showPreloader("Processing...", "visible");
             })
             .catch(error => {
                 console.log(TAG + error)
             });
     }
 
-    static showPreloader(message){
-        document.getElementById("processing").style.visibility = "visible";
+    static showPreloader(message, visibility){
+        document.getElementById("processing").style.visibility = visibility;
         document.getElementById("alert-message").innerHTML = message;
     }
 

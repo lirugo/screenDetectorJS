@@ -32,6 +32,8 @@ class VideoStream {
             console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
 
             customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
+
+            Utils.showPreloader("", "hidden");
         });
 
         try {
@@ -82,7 +84,7 @@ class VideoStream {
                     this.skippedFrame++;
                     return;                    
                 }
-                Utils.showPreloader("Sending to server...");
+                Utils.showPreloader("Sending to server...", "visible");
                 console.log(TAG + "SEND TO SERVER")
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";

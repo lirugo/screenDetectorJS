@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    9
+                    1
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -230,12 +230,7 @@
             ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
             ctxMarker.stroke();
 
-            ctxMarker.beginPath();
-            ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-            ctxMarker.fillStyle = "red";
-            ctxMarker.fill();
-
-
+           
             // <!-- OnEachFrame -->
             function onEachFrame(){
                 if(videoWidth && videoWidth){
@@ -249,7 +244,10 @@
                     let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
 
                     // console.log(TAG + isGreen);
-
+                    ctxMarker.beginPath();
+                    ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+                    ctxMarker.fillStyle = "red";
+                    ctxMarker.fill();
                    
 
                     if(aimDetected){

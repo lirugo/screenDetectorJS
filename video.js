@@ -54,7 +54,7 @@ class VideoStream {
             console.log(TAG + 'Video stream setup');
             localVideo.srcObject = stream;
         } catch (e) {
-            Utils.showPreloader(`Video stream error: ${e.name}`, "visible");
+            // Utils.showPreloader(`Video stream error: ${e.name}`, "visible");
             console.log(TAG + `Video stream error: ${e.name}`);
         }    
     }
@@ -83,7 +83,7 @@ class VideoStream {
                     this.skippedFrame++;
                     return;                    
                 }
-                Utils.showPreloader("Sending to server...", "visible");
+                // Utils.showPreloader("Sending to server...", "visible");
                 console.log(TAG + "SEND TO SERVER")
                 Utils.sendImage2Server(customCanvas.canvasFrame.toDataURL());
                 this.currentCoreMode = "";

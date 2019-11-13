@@ -126,12 +126,13 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    9
+                    1
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker" style="opacity: 0;"></canvas>
                 <canvas id="canvasForFrame" class="canvasForFrame" style="opacity: 0;"></canvas>
               
+                <div id="debugDiv"></div>
             </section>
         </div>
 
@@ -144,6 +145,18 @@
         <script src="utils.js"></script>
         <script src="main.js"></script>
 
+        <script>
+            if (typeof console  != "undefined") 
+            if (typeof console.log != 'undefined')
+                console.olog = console.log;
+            else
+                console.olog = function() {};
 
+            console.log = function(message) {
+                console.olog(message);
+                document.getElementById("debugDiv").append('<p>' + message + '</p>');
+            };
+            console.error = console.debug = console.info =  console.log
+        </script>
     </body>
 </html>

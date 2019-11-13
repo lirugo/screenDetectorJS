@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    6
+                    7
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -162,6 +162,22 @@
             navigator.mediaDevices.getUserMedia(constraints).
             then(handleSuccess).catch(handleError);
         </script>
+
+        <!-- Canvas Market -->
+        <script>
+            let canvasMarker = document.getElementById('canvasMarker');
+            let ctxMarker = canvasMarker.getContext("2d");
+        
+            ctxMarker.beginPath();
+            ctxMarker.strokeStyle = "#FF0000";
+            ctxMarker.lineWidth = 5;
+            ctxMarker.rect(0,0, 100, 100)
+            ctxMarker.stroke();
+
+        </script>
+
+
+
         <!-- <script src="video.js"></script>
         <script src="canvas.js"></script>
         <script src="utils.js"></script>

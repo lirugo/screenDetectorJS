@@ -272,7 +272,7 @@
                         send_data = false;
                         axios
                             .post(SEND_FRAME_URL, {
-                                deviceModel: "Utils.getModelFromUserAgent()",
+                                deviceModel: Utils.getModelFromUserAgent(),
                                 image: canvasForFrame.toDataURL(),
                             })
                             .then(res => { 

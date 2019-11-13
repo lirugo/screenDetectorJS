@@ -125,8 +125,10 @@
     <body>
         <div class="container">
             <section class="wrapper">
-                <h1 style="z-index: 1000; font-size: 4rem; color:red;">1</h1>
-                <video autoplay muted playsinline></video>
+                <h1 style="z-index: 1000; font-size: 4rem; color:red;">
+                    2
+                </h1>
+                <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
                 <!-- <canvas id="canvasForFrame" class="canvasForFrame"></canvas> -->
               
@@ -140,7 +142,7 @@
                 video: true
             };
 
-            var video = document.querySelector('video');
+            var video = document.getElementById('video');
 
             function handleSuccess(stream) {
                 window.stream = stream; // only to make stream available to console

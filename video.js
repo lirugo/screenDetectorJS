@@ -20,7 +20,7 @@ class VideoStream {
         this.skippedFrame = 0;
     }
 
-    async setupVideoStream(customCanvas){
+    async setupVideoStream(){
         
         let classThis = this;
         this.videoElement.addEventListener('loadedmetadata', function() {
@@ -31,9 +31,9 @@ class VideoStream {
 
             console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
 
-            customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
+            // customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
 
-            Utils.showPreloader("", "hidden");
+            // Utils.showPreloader("", "hidden");
           });
 
         try {

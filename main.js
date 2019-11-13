@@ -13,13 +13,13 @@ const videoStream = new VideoStream(TAG, FPS, SEND_FRAME_URL, localVideo);
 // customCanvas.setupCanvasMarker();
 // customCanvas.drawCanvasMarker();
 
-videoStream.setupVideoStream(customCanvas);
+videoStream.setupVideoStream();
 
 // console.log(TAG + "Window size " + WIDNWDOW_WIDTH + "x" + WIDNWDOW_HEIGHT)
 
 // Utils.showPreloader("", "hidden");
 //Update canvas every time in interval
-setInterval(function(){
-    videoStream.onEachFrame(customCanvas);
-}, 1000/FPS);
+// setInterval(function(){
+//     videoStream.onEachFrame(customCanvas);
+// }, 1000/FPS);
 

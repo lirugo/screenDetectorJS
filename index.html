@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    9
+                    1
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -181,6 +181,11 @@
             canvasMarker.width  = WIDNWDOW_WIDTH;
             canvasMarker.height = WIDNWDOW_HEIGHT;
 
+            ctxMarker.beginPath();
+            ctxMarker.strokeStyle = "#FF0000";
+            ctxMarker.lineWidth = 5;
+            ctxMarker.rect(0,0,100,100);
+            ctxMarker.stroke();
 
             const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
             const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;

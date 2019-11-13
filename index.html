@@ -136,12 +136,33 @@
             </div>
         </div>
 
-        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script>
+            var constraints = {
+                video: true
+            };
+
+            var video = document.querySelector('video');
+
+            function handleSuccess(stream) {
+                window.stream = stream; // only to make stream available to console
+                video.srcObject = stream;
+            }
+
+            function handleError(error) {
+                console.log('getUserMedia error: ', error);
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints).
+            then(handleSuccess).catch(handleError);
+        </script>
+        <!-- <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script> -->
         
-        <script src="video.js"></script>
-        <script src="canvas.js"></script>
-        <script src="utils.js"></script>
-        <script src="main.js"></script>
+        <!-- <script src="video.js"></script> -->
+        <!-- <script src="canvas.js"></script> -->
+        <!-- <script src="utils.js"></script> -->
+        <!-- <script src="main.js"></script> -->
+
+
     </body>
 </html>

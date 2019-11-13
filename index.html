@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    1
+                    2
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -137,11 +137,8 @@
             </section>
         </div>
 
-       
-        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         
-
         <!-- Common -->
         <script>
             const WIDNWDOW_WIDTH = window.innerWidth;
@@ -151,6 +148,8 @@
         <!-- Setup Video Stream -->
         <script>
             'use strict';
+
+            const TAG = "WEB TAG ";
 
             var constraints = {
                 video: true
@@ -169,6 +168,18 @@
 
             navigator.mediaDevices.getUserMedia(constraints).
             then(handleSuccess).catch(handleError);
+
+            var videoWidth;
+            var videoHeight;
+            let classThis = this;
+            video.addEventListener('loadedmetadata', function() {
+                classThis.videoWidth = this.videoWidth;
+                classThis.videoHeight = this.videoHeight;
+                classThis.video.style.width = "100%";
+                classThis.video.style.height = "100%";
+
+                console.log(TAG + `Video stream width: ${classThis.videoWidth}px, height: ${classThis.videoHeight}px`);
+            });
         </script>
 
         <!-- Canvas Market -->
@@ -181,17 +192,10 @@
             canvasMarker.width  = WIDNWDOW_WIDTH;
             canvasMarker.height = WIDNWDOW_HEIGHT;
 
-            ctxMarker.beginPath();
-            ctxMarker.strokeStyle = "#FF0000";
-            ctxMarker.lineWidth = 5;
-            ctxMarker.rect(0,0,100,100);
-            ctxMarker.stroke();
-
             const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
             const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
             const lengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
             const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
-
 
             let aimTLX = (WIDNWDOW_WIDTH - WIDNWDOW_WIDTH / 1.3);
             let aimTLY = (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / 1.25);
@@ -202,7 +206,6 @@
             ctxMarker.rect(aimTLX-lengthX/2, aimTLY-lengthY/2, lengthX, lengthY)
             ctxMarker.stroke();
             
-
             //Draw green side markers
             //Top left
             ctxMarker.beginPath();
@@ -225,6 +228,28 @@
             ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
             ctxMarker.stroke();
 
+        </script>
+
+        <!-- OnEachFrame -->
+        <script>
+            if(videoWidth && videoWidth){
+                let ctxFrame = customCanvas.ctxFrame;
+                ctxFrame.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth, videoHeight);
+
+                if(currentCoreMode == MODE_PHONE_DETECTING){
+                    let imgData = ctxFrame.getImageData(0, 0, videoWidth, videoHeight);
+
+                    let x = (videoWidth - videoWidth / 1.3);
+                    let y = (videoHeight - videoHeight / 1.25);
+                    let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
+
+                    // console.log(TAG + isGreen);
+                    if(aimDetected){
+                        customCanvas.fillScreenWithColor("white");
+                        currentCoreMode = MODE_SEND_DATA;
+                    }
+                }
+            }
         </script>
 
 

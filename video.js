@@ -34,7 +34,6 @@ class VideoStream {
             customCanvas.setupCanvasFrame(this.videoWidth, this.videoHeight);
 
             Utils.showPreloader("", "hidden");
-
           });
 
         try {

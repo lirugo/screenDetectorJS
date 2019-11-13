@@ -239,6 +239,8 @@
             ctxMarker.stroke();
 
            
+            var send_data = false;
+            var skipped_frame = 0;
             // <!-- OnEachFrame -->
             function onEachFrame(){
                 if(videoWidth && videoWidth){
@@ -258,7 +260,16 @@
                         ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
                         ctxMarker.fillStyle = "white";
                         ctxMarker.fill();
+                        send_data = true;
+                    }
 
+                    if(send_data){
+                        while(skipped_frame < 10){
+                            skipped_frame++;
+                            return
+                        }
+                        
+                        send_data = false;
                         axios
                             .post(SEND_FRAME_URL, {
                                 deviceModel: "Utils.getModelFromUserAgent()",

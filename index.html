@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    1
+                    2
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -184,6 +184,9 @@
 
         <!-- Canvas Market -->
         <script>
+
+            const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
+
             var canvasMarker = document.getElementById('canvasMarker');
             var ctxMarker = canvasMarker.getContext("2d");
             var canvasForFrame = document.getElementById('canvasForFrame');
@@ -245,15 +248,23 @@
 
                     // console.log(TAG + isGreen);
                     
-                   
-
                     if(aimDetected){
                         ctxMarker.beginPath();
                         ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
                         ctxMarker.fillStyle = "red";
                         ctxMarker.fill();
-                        // customCanvas.fillScreenWithColor("white");
-                        // currentCoreMode = MODE_SEND_DATA;
+
+                        axios
+                            .post(SEND_FRAME_URL, {
+                                deviceModel: "Utils.getModelFromUserAgent()",
+                                image: image,
+                            })
+                            .then(res => { 
+                                console.log(TAG + "SEND STATUS " + res.status)
+                            })
+                            .catch(error => {
+                                console.log(TAG + error)
+                            });
                     }
                 }
             }

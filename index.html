@@ -244,13 +244,14 @@
                     let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
 
                     // console.log(TAG + isGreen);
-                    ctxMarker.beginPath();
-                    ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-                    ctxMarker.fillStyle = "red";
-                    ctxMarker.fill();
+                    
                    
 
                     if(aimDetected){
+                        ctxMarker.beginPath();
+                        ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+                        ctxMarker.fillStyle = "red";
+                        ctxMarker.fill();
                         // customCanvas.fillScreenWithColor("white");
                         // currentCoreMode = MODE_SEND_DATA;
                     }

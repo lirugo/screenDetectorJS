@@ -128,7 +128,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    6
+                    7
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -152,7 +152,16 @@
             const TAG = "WEB TAG ";
 
             var constraints = {
-                video: true
+                video: {
+                        optional: [
+                            {minWidth: 320},
+                            {minWidth: 640},
+                            {minWidth: 1024},
+                            {minWidth: 1280},
+                            {minWidth: 1920},
+                            {minWidth: 2560},
+                        ]
+                    }
             };
 
             var video = document.getElementById('video');

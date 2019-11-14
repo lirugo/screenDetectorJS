@@ -115,13 +115,32 @@ class Utils {
     static getModelFromUserAgent(){
         let userAgentArray = window.navigator.userAgent.split(" ");
 
-        let model = "";
-        let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
-        for(let i = 4; i<buildIndex; i++){
-            model += userAgentArray[i] + " ";
+        let model = "UNKNOWN";
+
+        if(this.isAndroid()){
+            model = "";
+            let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
+            for(let i = 4; i<buildIndex; i++){
+                model += userAgentArray[i] + " ";
+            }
+        }else{
+            model = "iPhone";
         }
 
         return model;
+    }
+
+    static isAndroid(){ return /(android)/i.test(navigator.userAgent); }
+
+    static isIOS(){ return /(iphone)/i.test(navigator.userAgent); }
+
+    static getOSFromUserAgent(){
+        if(this.isAndroid())
+            return "Android";
+        if(this.isIOS())
+            return "IOS";
+
+        return "UNKNOWN";
     }
 
 };

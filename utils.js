@@ -118,12 +118,14 @@ class Utils {
         let model = "UNKNOWN";
 
         if(this.isAndroid()){
-            let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
-            
-            model = "buildIndex " + buildIndex + " length " + userAgentArray.length + " -";
-            for(let i = 3; i<buildIndex; i++){
+            let buildIndex = userAgentArray.findIndex(el => el.includes(')'));
+            model = "";
+            for(let i = 4; i<buildIndex; i++){
                 model += userAgentArray[i] + " ";
             }
+
+            if(model == "")
+                model = "UNKNOWN";
         }
         if(this.isIOS()){
             model = "iPhone";

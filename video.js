@@ -43,12 +43,14 @@ class VideoStream {
     }
 
     detectPhone(customCanvas) {
-        if(this.videoWidth && this.videoHeight){
+        if(
+            this.videoWidth && this.videoHeight &&
+            this.currentCoreMode == this.MODE_UNHANDLED
+        ){
+            customCanvas.ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
+            let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
+
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
-                customCanvas.ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
-
-                let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
-
                 let x = (this.videoWidth - this.videoWidth / 1.3);
                 let y = (this.videoHeight - this.videoHeight / 1.25);
                 let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
@@ -65,7 +67,7 @@ class VideoStream {
             }
 
             if(this.currentCoreMode == this.MODE_SKIP_FRAME){
-                while(this.skippedFrame < 30){
+                while(this.skippedFrame < 10){
                     this.skippedFrame++;
                     return;
                 }
@@ -75,12 +77,9 @@ class VideoStream {
             if(this.currentCoreMode == this.MODE_SEND_DATA){
                 this.currentCoreMode = this.MODE_UNHANDLED;
 
-                customCanvas.ctxMarker.beginPath();
-                customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-                customCanvas.ctxMarker.fillStyle = "red";
-                customCanvas.ctxMarker.fill();
-                // Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
+                Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
+        
         }
     }
 }

@@ -16,6 +16,7 @@
                 display: grid;
                 grid-template-columns: auto;
             }
+
             @media only screen and (min-width: 1020px) {
                 .container {
                     display: grid;
@@ -25,16 +26,19 @@
                         "wrapper";
                     height: 100vh;
                 }
+
                 .wrapper {
                     grid-area: wrapper;
                 }
             }
+
             .container section h1 {
                 position: absolute;
                 margin-left: 2em;
                 text-align: center;
                 font-weight: normal;
             }
+
             .canvasMarker {
                 z-index: 3;
                 position: fixed; 
@@ -46,6 +50,7 @@
                 height: 100%;
                 transform: scale(-1, 1);
             }
+
             .canvasForFrame {
                 z-index: 0;
                 position: fixed; 
@@ -53,6 +58,7 @@
                 left: 0;
                 transform: scale(-1, 1);
             }
+
             video {
                 z-index: 1;
                 position: fixed; 
@@ -62,6 +68,8 @@
                 min-height: 100%;
                 transform: scale(-1, 1);
             }
+
+
             /* Loader */
             @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
             .processing {
@@ -118,7 +126,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    1
+                    2
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -128,7 +136,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         <script src="utils.js"></script>
-        <script src="video.js"></script>
+        <!-- <script src="video.js"></script> -->
         <script src="canvas.js"></script>
 
         <!-- Common -->
@@ -146,42 +154,77 @@
             var videoElement = document.getElementById('video');
             var videoStream = new VideoStream(TAG, FPS, URL, videoElement);
             
-            // Init Video Stream
-            videoStream.init();
+            var constraints = {
+                video: {
+                        optional: [
+                            {minWidth: 320},
+                            {minWidth: 640},
+                            {minWidth: 1024},
+                            {minWidth: 1280},
+                            {minWidth: 1920},
+                            {minWidth: 2560},
+                        ]
+                    }
+            };
+
+            function handleStreamSuccess(stream) {
+                window.stream = stream; 
+                video.srcObject = stream;  
+            }
+
+            function handleStreamError(error) {
+                console.log(TAG + 'getUserMedia error: ', error);
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(handleStreamSuccess)
+                .catch(handleStreamError);
+
+
+
             // Resize on stream show
-            video.addEventListener('loadedmetadata', function() {
-                videoStream.videoWidth = this.videoWidth;
-                videoStream.videoHeight = this.videoHeight;
-                videoElement.style.width = "100%";
-                videoElement.style.height = "100%";
-                canvasForFrame.style.width = this.videoWidth;
-                canvasForFrame.style.height = this.videoHeight;
-                canvasForFrame.width  = this.videoWidth;
-                canvasForFrame.height = this.videoHeight;
-                console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
-                console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
-            });
+            // video.addEventListener('loadedmetadata', function() {
+            //     videoStream.videoWidth = this.videoWidth;
+            //     videoStream.videoHeight = this.videoHeight;
+            //     videoElement.style.width = "100%";
+            //     videoElement.style.height = "100%";
+
+            //     canvasForFrame.style.width = this.videoWidth;
+            //     canvasForFrame.style.height = this.videoHeight;
+            //     canvasForFrame.width  = this.videoWidth;
+            //     canvasForFrame.height = this.videoHeight;
+
+            //     console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
+            //     console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
+            // });
+
+
             
            
-            // Setup Canvas Marker
-            var canvasMarker = document.getElementById('canvasMarker');
-            var canvasForFrame = document.getElementById('canvasForFrame');
-            var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame);
+
+            // // Setup Canvas Marker
+            // var canvasMarker = document.getElementById('canvasMarker');
+            // var canvasForFrame = document.getElementById('canvasForFrame');
+            // var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame);
         
-            customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-            //Draw side markers
-            const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
-            const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
-            const lengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
-            const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
-            customCanvas.drawSideMarkers();
-            //Draw aims
-            customCanvas.drawAims();
+            // customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+
+            // //Draw side markers
+            // const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
+            // const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
+            // const lengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
+            // const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
+            // customCanvas.drawSideMarkers();
+
+            // //Draw aims
+            // customCanvas.drawAims();
+
            
-            //Run phone detection on each FPS
-            setInterval(function(){
-               videoStream.detectPhone(customCanvas);
-            }, 1000/videoStream.FPS);
+            // //Run phone detection on each FPS
+            // setInterval(function(){
+            //    videoStream.detectPhone(customCanvas);
+            // }, 1000/videoStream.FPS);
+
             // console.log(navigator.userAgent)
         </script>
 

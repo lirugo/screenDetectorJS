@@ -54,14 +54,9 @@ class VideoStream {
                 let x = (this.videoWidth - this.videoWidth / 1.3);
                 let y = (this.videoHeight - this.videoHeight / 1.25);
                 let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
-
-                console.log(TAG + aimDetected);
                 
                 if(aimDetected){
-                    customCanvas.ctxMarker.beginPath();
-                    customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-                    customCanvas.ctxMarker.fillStyle = "white";
-                    customCanvas.ctxMarker.fill();
+                    customCanvas.fillScreenWithColor("#00FF00");
                     this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }

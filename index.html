@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    2
+                    4
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -140,8 +140,6 @@
         <script src="video.js"></script>
         <script src="canvas.js"></script>
 
-       
-
         <script>
             // Setup Video Stream
             var videoElement = document.getElementById('video');
@@ -159,18 +157,16 @@
                 canvasForFrame.style.height = this.videoHeight;
                 canvasForFrame.width  = this.videoWidth;
                 canvasForFrame.height = this.videoHeight;
+
                 console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
                 console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
             });
-            
            
             // Setup Canvas Marker
             var canvasMarker = document.getElementById('canvasMarker');
             var canvasForFrame = document.getElementById('canvasForFrame');
             var ctxMarker = canvasMarker.getContext("2d");
             var ctxFrame = canvasForFrame.getContext("2d");
-
-
 
             var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame, ctxMarker, ctxFrame);
             customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
@@ -181,23 +177,17 @@
             const lengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
             const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
             customCanvas.drawSideMarkers();
+
             //Draw aims
             customCanvas.drawAims();
            
-           
-
             //Run phone detection on each FPS
             setInterval(function(){
-               videoStream.detectPhone(customCanvas);
+                //Redraw side markers
+
+                videoStream.detectPhone(customCanvas);
             }, 1000/videoStream.FPS);
-            console.log(navigator.userAgent)
         </script>
-
-
-
-        <!-- <script src="video.js"></script>
-        <script src="canvas.js"></script>
-        <script src="main.js"></script> -->
         
     </body>
 </html>

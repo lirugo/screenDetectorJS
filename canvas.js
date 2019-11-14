@@ -56,4 +56,11 @@ class CustomCanvas {
         this.ctxMarker.rect(aimTR[0]-lengthX/2, aimTR[1]-lengthY/2, lengthX, lengthY)
         this.ctxMarker.stroke();
     }
+
+    fillScreenWithColor(color){
+        this.ctxMarker.beginPath();
+        this.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+        this.ctxMarker.fillStyle = color;
+        this.ctxMarker.fill();
+    }
 }

@@ -126,7 +126,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    5
+                    6
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -182,20 +182,20 @@
 
 
             // Resize on stream show
-            video.addEventListener('loadedmetadata', function() {
-                videoStream.videoWidth = this.videoWidth;
-                videoStream.videoHeight = this.videoHeight;
-                videoElement.style.width = "100%";
-                videoElement.style.height = "100%";
+            // video.addEventListener('loadedmetadata', function() {
+            //     videoStream.videoWidth = this.videoWidth;
+            //     videoStream.videoHeight = this.videoHeight;
+            //     videoElement.style.width = "100%";
+            //     videoElement.style.height = "100%";
 
-                canvasForFrame.style.width = this.videoWidth;
-                canvasForFrame.style.height = this.videoHeight;
-                canvasForFrame.width  = this.videoWidth;
-                canvasForFrame.height = this.videoHeight;
+            //     canvasForFrame.style.width = this.videoWidth;
+            //     canvasForFrame.style.height = this.videoHeight;
+            //     canvasForFrame.width  = this.videoWidth;
+            //     canvasForFrame.height = this.videoHeight;
 
-                console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
-                console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
-            });
+            //     console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
+            //     console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
+            // });
 
 
             

@@ -118,7 +118,7 @@ class Utils {
         let model = "UNKNOWN";
 
         if(this.isAndroid()){
-            model = "";
+            model = "bInd " + buildIndex + " L " + userAgentArray.length;
             let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
             for(let i = 4; i<buildIndex; i++){
                 model += userAgentArray[i] + " ";

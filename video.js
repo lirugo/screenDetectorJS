@@ -8,6 +8,7 @@ class VideoStream {
         this.MODE_UNHANDLED = 0;
         this.MODE_PHONE_DETECTING = 1;
         this.MODE_SEND_DATA = 2;
+        this.MODE_SKIP_FRAME = 3;
         this.currentCoreMode = this.MODE_PHONE_DETECTING;
         this.skippedFrame = 0;
     }
@@ -54,7 +55,7 @@ class VideoStream {
                 console.log(TAG + aimDetected);
                 
                 if(aimDetected){
-                    this.currentCoreMode = this.MODE_SEND_DATA;
+                    this.currentCoreMode = this.MODE_SKIP_FRAME;
                     customCanvas.ctxMarker.beginPath();
                     customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
                     customCanvas.ctxMarker.fillStyle = "white";
@@ -69,6 +70,9 @@ class VideoStream {
                 }
 
                 this.currentCoreMode = this.MODE_UNHANDLED;
+            }
+
+            if(this.currentCoreMode == this.MODE_SEND_DATA){
                 Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
         }

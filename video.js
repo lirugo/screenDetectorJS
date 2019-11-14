@@ -17,13 +17,14 @@ class VideoStream {
     init() {
         let constraints = {
             video: {
-                    optional: [
-                        {minWidth: 1024},
-                        {minWidth: 1280},
-                        {minWidth: 1920},
-                        {minWidth: 2560},
-                    ]
-                }
+                width: {min: 960},
+                // optional: [
+                //     {minWidth: 1024},
+                //     {minWidth: 1280},
+                //     {minWidth: 1920},
+                //     {minWidth: 2560},
+                // ]
+            }
         };
 
         navigator.mediaDevices.getUserMedia(constraints)

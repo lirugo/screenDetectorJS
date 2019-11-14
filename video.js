@@ -45,7 +45,7 @@ class VideoStream {
     detectPhone(customCanvas) {
         if(
             this.videoWidth && this.videoHeight &&
-            this.currentCoreMode == this.MODE_UNHANDLED
+            this.currentCoreMode != this.MODE_UNHANDLED
         ){
             customCanvas.ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
             let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
@@ -79,7 +79,6 @@ class VideoStream {
 
                 Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
-        
         }
     }
 }

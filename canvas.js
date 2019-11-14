@@ -9,7 +9,7 @@ class CustomCanvas {
         this.canvasForFrameCreated = false;
     }
 
-    init() {
+    init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT) {
         this.canvasMarker.width  = WIDNWDOW_WIDTH;
         this.canvasMarker.height = WIDNWDOW_HEIGHT;
         this.canvasMarker.style.width = WIDNWDOW_WIDTH;

@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    3
+                    4
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -170,14 +170,9 @@
 
 
 
-            // var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame, ctxMarker, ctxFrame);
-        
-            // customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-            this.canvasMarker.width  = WIDNWDOW_WIDTH;
-            this.canvasMarker.height = WIDNWDOW_HEIGHT;
-            this.canvasMarker.style.width = WIDNWDOW_WIDTH;
-            this.canvasMarker.style.height = WIDNWDOW_HEIGHT;
-
+            var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame, ctxMarker, ctxFrame);
+            customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+           
             // //Draw side markers
             const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
             const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;

@@ -154,9 +154,33 @@
             var videoElement = document.getElementById('video');
             var videoStream = new VideoStream(TAG, FPS, URL, videoElement);
             
-            // Init Video Stream
-            videoStream.init();
+            let constraints = {
+                video: {
+                        optional: [
+                            {minWidth: 320},
+                            {minWidth: 640},
+                            {minWidth: 1024},
+                            {minWidth: 1280},
+                            {minWidth: 1920},
+                            {minWidth: 2560},
+                        ]
+                    }
+            };
 
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(this.handleStreamSuccess)
+                .catch(this.handleStreamError);
+
+            function handleStreamSuccess(stream) {
+                window.stream = stream; 
+                video.srcObject = stream;  
+            }
+
+            function handleStreamError(error) {
+                console.log(TAG + 'getUserMedia error: ', error);
+            }
+
+            
             // Resize on stream show
             video.addEventListener('loadedmetadata', function() {
                 videoStream.videoWidth = this.videoWidth;

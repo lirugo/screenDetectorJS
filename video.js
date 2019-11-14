@@ -56,7 +56,7 @@ class VideoStream {
                 let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
                 
                 if(aimDetected){
-                    customCanvas.fillScreenWithColor("#00FF00");
+                    customCanvas.fillScreenWithColor("#FFFFFF");
                     this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }

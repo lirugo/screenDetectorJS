@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    1
+                    2
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -186,10 +186,10 @@
            
 
             //Run phone detection on each FPS
-            // setInterval(function(){
-            //    videoStream.detectPhone(customCanvas);
-            // }, 1000/videoStream.FPS);
-            // console.log(navigator.userAgent)
+            setInterval(function(){
+               videoStream.detectPhone(customCanvas);
+            }, 1000/videoStream.FPS);
+            console.log(navigator.userAgent)
         </script>
 
 

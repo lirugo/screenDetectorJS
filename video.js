@@ -37,6 +37,8 @@ class VideoStream {
     }
 
     handleStreamError(error) {
+
+        Utils.showPreloader("getUserMedia error: " + error, "visible");
         console.log(TAG + 'getUserMedia error: ', error);
     }
 

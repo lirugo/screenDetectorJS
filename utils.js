@@ -123,7 +123,8 @@ class Utils {
             for(let i = 4; i<buildIndex; i++){
                 model += userAgentArray[i] + " ";
             }
-        }else{
+        }
+        if(this.isIOS()){
             model = "iPhone";
         }
 

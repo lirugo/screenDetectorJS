@@ -63,7 +63,7 @@ class VideoStream {
             }
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
-                while(this.skipped_frame < 10){
+                while(this.skipped_frame < 20){
                     this.skipped_frame++;
                     return;
                 }

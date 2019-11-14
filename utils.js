@@ -100,9 +100,11 @@ class Utils {
                 image: image,
             })
             .then(res => { 
+                Utils.showPreloader("Image was send", "visible");
                 console.log(TAG + "SEND STATUS " + res.status);
             })
             .catch(error => {
+                Utils.showPreloader("Error on send " + error, "visible");
                 console.log(TAG + error);
             });
     }

@@ -71,7 +71,8 @@ class VideoStream {
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
                 this.currentCoreMode = this.MODE_UNHANDLED;
-
+                
+                Utils.showPreloader("Sending to server", "visible");
                 Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
         }

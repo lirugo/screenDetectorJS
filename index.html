@@ -126,7 +126,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    2
+                    3
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -153,31 +153,7 @@
             var videoElement = document.getElementById('video');
             var videoStream = new VideoStream(TAG, FPS, URL, videoElement);
             
-            var constraints = {
-                video: {
-                        optional: [
-                            {minWidth: 320},
-                            {minWidth: 640},
-                            {minWidth: 1024},
-                            {minWidth: 1280},
-                            {minWidth: 1920},
-                            {minWidth: 2560},
-                        ]
-                    }
-            };
-
-            function handleStreamSuccess(stream) {
-                window.stream = stream; 
-                video.srcObject = stream;  
-            }
-
-            function handleStreamError(error) {
-                console.log(TAG + 'getUserMedia error: ', error);
-            }
-
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then(handleStreamSuccess)
-                .catch(handleStreamError);
+            videoStream.init();
 
 
 

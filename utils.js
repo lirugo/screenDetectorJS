@@ -113,11 +113,9 @@ class Utils {
     }
 
     static getModelFromUserAgent(){
-        let userAgentArray = window.navigator.userAgent.split(" ");
+        let userAgentArray = navigator.userAgent.split(" ");
 
-        let model = "UNKNOWN";
-
-        model = window.navigator.userAgent;
+        let model = navigator.userAgent;
 
         return model;
     }

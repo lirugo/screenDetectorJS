@@ -126,7 +126,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    4
+                    5
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -168,8 +168,8 @@
             };
 
             navigator.mediaDevices.getUserMedia(constraints)
-                .then(this.handleStreamSuccess)
-                .catch(this.handleStreamError);
+                .then(handleStreamSuccess)
+                .catch(handleStreamError);
 
             function handleStreamSuccess(stream) {
                 window.stream = stream; 

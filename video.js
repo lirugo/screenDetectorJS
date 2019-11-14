@@ -69,8 +69,8 @@ class VideoStream {
                     this.skipped_frame++;
                     return;
                 }
-                if(this.skipped_frame >= 30)
-                    this.currentCoreMode = this.MODE_SEND_DATA;
+                // if(this.skipped_frame >= 30)
+                //     this.currentCoreMode = this.MODE_SEND_DATA;
             }
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){

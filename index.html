@@ -146,7 +146,7 @@
             const WIDNWDOW_HEIGHT = window.innerHeight;
             const TAG = "WEB TAG ";
             const FPS = 10;
-            const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
+            const SEND_FRAME_URL = "http://192.168.88.244:8080/api/web/";
         </script>
 
         <script>
@@ -164,10 +164,10 @@
                 videoElement.style.width = "100%";
                 videoElement.style.height = "100%";
 
-                // canvasForFrame.style.width = videoWidth;
-                // canvasForFrame.style.height = videoHeight;
-                // canvasForFrame.width  = videoWidth;
-                // canvasForFrame.height = videoHeight;
+                canvasForFrame.style.width = this.videoWidth;
+                canvasForFrame.style.height = this.videoHeight;
+                canvasForFrame.width  = this.videoWidth;
+                canvasForFrame.height = this.videoHeight;
 
                 console.log(TAG + `Video stream width: ${videoStream.videoWidth}px, height: ${videoStream.videoHeight}px`);
                 console.log(TAG + `CanvasForFrame width: ${canvasForFrame.width}px, height: ${canvasForFrame.height}px`);
@@ -175,10 +175,6 @@
 
 
             
-
-
-            var videoWidth;
-            var videoHeight;
            
 
             // Setup Canvas Marker
@@ -199,63 +195,10 @@
             customCanvas.drawAims();
 
            
-
-           
-            var send_data = false;
-            var skipped_frame = 0;
-            var mode = "DETECT";
-            // <!-- OnEachFrame -->
-            function onEachFrame(){
-                if(videoWidth && videoWidth){
-                    if(mode == "DETECT"){
-                        let ctxFrame = ctxForFrame;
-                        ctxFrame.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, videoWidth, videoHeight);
-
-                        let imgData = ctxFrame.getImageData(0, 0, videoWidth, videoHeight);
-
-                        let x = (videoWidth - videoWidth / 1.3);
-                        let y = (videoHeight - videoHeight / 1.25);
-                        let aimDetected = Utils.aimDetected(imgData, x, y, videoWidth, videoHeight);
-
-                        // console.log(TAG + isGreen);
-                        
-                        if(aimDetected){
-                            ctxMarker.beginPath();
-                            ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-                            ctxMarker.fillStyle = "white";
-                            ctxMarker.fill();
-                            send_data = true;
-                        }
-
-                        if(send_data){
-                            while(skipped_frame < 10){
-                                skipped_frame++;
-                                return;
-                            }
-
-                            send_data = false;
-                            mode = "";
-
-                            axios
-                                .post(SEND_FRAME_URL, {
-                                    deviceOS: Utils.getOSFromUserAgent(),
-                                    deviceModel: Utils.getModelFromUserAgent(),
-                                    image: canvasForFrame.toDataURL(),
-                                })
-                                .then(res => { 
-                                    console.log(TAG + "SEND STATUS " + res.status);
-                                })
-                                .catch(error => {
-                                    console.log(TAG + error);
-                                });
-                        }
-                    }
-                }
-            }
-
+            //Run phone detection on each FPS
             setInterval(function(){
-               onEachFrame();
-            }, 1000/10);
+               videoStream.detectPhone(customCanvas);
+            }, 1000/videoStream.FPS);
 
             // console.log(navigator.userAgent)
         </script>

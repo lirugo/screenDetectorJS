@@ -23,8 +23,7 @@ class CustomCanvas {
         this.canvasMarker.style.height = WIDNWDOW_HEIGHT;
 
         console.log(TAG + `CanvasMarker width: ${this.canvasMarker.width}px, height: ${this.canvasMarker.height}px`);
-            
-    }
+   }
 
     drawSideMarkers() {
         let colors = ["#00FF00","#00FF00","#00FF00","#00FF00"];

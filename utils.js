@@ -95,15 +95,15 @@ class Utils {
     static sendImage2Server(image){
         axios
             .post(SEND_FRAME_URL, {
+                deviceOS: Utils.getOSFromUserAgent(),
                 deviceModel: Utils.getModelFromUserAgent(),
                 image: image,
             })
             .then(res => { 
-                console.log(TAG + "SEND STATUS " + res.status)
-                Utils.showPreloader("Processing...", "visible");
+                console.log(TAG + "SEND STATUS " + res.status);
             })
             .catch(error => {
-                console.log(TAG + error)
+                console.log(TAG + error);
             });
     }
 

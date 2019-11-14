@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    1
+                    2
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -168,22 +168,47 @@
             var ctxMarker = canvasMarker.getContext("2d");
             var ctxFrame = canvasForFrame.getContext("2d");
 
+
+
             var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame, ctxMarker, ctxFrame);
         
             customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
-            //Draw side markers
+            // //Draw side markers
             const greenLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
             const greenLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
             const lengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
             const lengthY = WIDNWDOW_WIDTH / 8 * 1.8;
-            customCanvas.drawSideMarkers();
-            //Draw aims
-            customCanvas.drawAims();
+            // customCanvas.drawSideMarkers();
+            // //Draw aims
+            // customCanvas.drawAims();
            
+            let colors = ["#00FF00","#00FF00","#00FF00","#00FF00"];
+        //TODO:: shake colors array
+        //Top left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = colors[0];
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-greenLengthX, 0, WIDNWDOW_WIDTH, greenLengthY)
+        this.ctxMarker.stroke();
+        //Top right
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = colors[1];
+        this.ctxMarker.fillRect(0, 0, greenLengthX, greenLengthY)
+        this.ctxMarker.stroke();
+        //Bottom right
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = colors[2];
+        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
+        this.ctxMarker.stroke();
+        //Bottom left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.fillStyle = colors[3];
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-greenLengthX, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
+        this.ctxMarker.stroke();
+
             //Run phone detection on each FPS
-            setInterval(function(){
-               videoStream.detectPhone(customCanvas);
-            }, 1000/videoStream.FPS);
+            // setInterval(function(){
+            //    videoStream.detectPhone(customCanvas);
+            // }, 1000/videoStream.FPS);
             // console.log(navigator.userAgent)
         </script>
 

@@ -1,16 +1,4 @@
 class VideoStream {    
-    FPS;
-    URL;
-    videoElement;
-    
-    videoWidth; videoHeight;
-    currentCoreMode;
-    skippedFrame;
-
-    MODE_PHONE_DETECTING;
-    MODE_SEND_DATA;
-    MODE_UNHANDLED;
-
     constructor(TAG, FPS, URL, videoElement){
         console.log(TAG + "Init Video Stream")
         this.FPS = FPS;

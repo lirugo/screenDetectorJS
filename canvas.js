@@ -1,10 +1,10 @@
 class CustomCanvas {
-    constructor(canvasMarker, canvasForFrame) {
+    constructor(canvasMarker, canvasForFrame, ctxMarker, ctxFrame) {
         this.canvasMarker = canvasMarker;
         this.canvasForFrame = canvasForFrame;
 
-        this.ctxMarker = canvasMarker.getContext("2d");
-        this.ctxFrame = canvasForFrame.getContext("2d");
+        this.ctxMarker = ctxMarker;
+        this.ctxFrame = ctxFrame;
 
         this.canvasForFrameCreated = false;
     }

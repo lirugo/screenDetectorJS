@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    5
+                    1
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -165,7 +165,10 @@
             // Setup Canvas Marker
             var canvasMarker = document.getElementById('canvasMarker');
             var canvasForFrame = document.getElementById('canvasForFrame');
-            var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame);
+            var ctxMarker = canvasMarker.getContext("2d");
+            var ctxFrame = canvasForFrame.getContext("2d");
+
+            var customCanvas = new CustomCanvas(canvasMarker, canvasForFrame, ctxMarker, ctxFrame);
         
             customCanvas.init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
             //Draw side markers

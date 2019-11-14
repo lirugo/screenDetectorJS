@@ -43,7 +43,6 @@ class VideoStream {
     }
 
     detectPhone(customCanvas) {
-        customCanvas.fillScreenWithColor("#00FFFF");
         if(
             this.videoWidth && this.videoHeight &&
             this.currentCoreMode != this.MODE_UNHANDLED

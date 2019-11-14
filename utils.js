@@ -115,7 +115,18 @@ class Utils {
     static getModelFromUserAgent(){
         let userAgentArray = navigator.userAgent.split(" ");
 
-        let model = navigator.userAgent;
+        let model = "UNKNOWN";
+
+        if(this.isAndroid()){
+            model = "";
+            let buildIndex = userAgentArray.findIndex(el => el.includes('Build'));
+            for(let i = 4; i<buildIndex; i++){
+                model += userAgentArray[i] + " ";
+            }
+        }
+        if(this.isIOS()){
+            model = "iPhone";
+        }
 
         return model;
     }

@@ -118,7 +118,7 @@
         <div class="container">
             <section class="wrapper">
                 <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    4
+                    5
                 </h1>
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
@@ -126,20 +126,21 @@
             </section>
         </div>
 
-        <script>"use strict";</script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
-        <script src="utils.js"></script>
-        <script src="video.js"></script>
-        <script src="canvas.js"></script>
-
-        <!-- Constants -->
-        <script>            
+         <!-- Constants -->
+         <script>  
+            "use strict";          
             const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
             const WIDNWDOW_WIDTH = window.innerWidth;
             const WIDNWDOW_HEIGHT = window.innerHeight;
             const TAG = "WEB TAG ";
             const FPS = 10;
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script src="utils.js"></script>
+        <script src="video.js"></script>
+        <script src="canvas.js"></script>
+
+       
 
         <script>
             // Setup Video Stream

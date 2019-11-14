@@ -10,6 +10,7 @@ class VideoStream {
         this.MODE_SEND_DATA = 2;
         this.MODE_SKIP_FRAME = 3;
         this.currentCoreMode = this.MODE_PHONE_DETECTING;
+
         this.skippedFrame = 0;
     }
 
@@ -63,16 +64,17 @@ class VideoStream {
                 }
             }
 
-            if(this.currentCoreMode == this.MODE_SEND_DATA){
+            if(this.currentCoreMode == this.MODE_SKIP_FRAME){
                 while(this.skipped_frame < 20){
                     this.skipped_frame++;
                     return;
                 }
 
-                this.currentCoreMode = this.MODE_UNHANDLED;
+                this.currentCoreMode = this.MODE_SEND_DATA;
             }
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
+                this.currentCoreMode = this.MODE_UNHANDLED;
                 Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
         }

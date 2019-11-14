@@ -56,11 +56,11 @@ class VideoStream {
                 console.log(TAG + aimDetected);
                 
                 if(aimDetected){
-                    this.currentCoreMode = this.MODE_SKIP_FRAME;
                     customCanvas.ctxMarker.beginPath();
                     customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
                     customCanvas.ctxMarker.fillStyle = "white";
                     customCanvas.ctxMarker.fill();
+                    this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }
 

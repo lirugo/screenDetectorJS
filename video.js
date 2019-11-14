@@ -69,12 +69,12 @@ class VideoStream {
                     this.skipped_frame++;
                     return;
                 }
-                this.currentCoreMode = this.MODE_SEND_DATA;
+                // this.currentCoreMode = this.MODE_SEND_DATA;
             }
 
             if(this.currentCoreMode == this.MODE_SEND_DATA){
                 this.currentCoreMode = this.MODE_UNHANDLED;
-                
+
                 customCanvas.ctxMarker.beginPath();
                 customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
                 customCanvas.ctxMarker.fillStyle = "red";

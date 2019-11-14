@@ -1,11 +1,4 @@
 class CustomCanvas {
-
-    canvasForFrameCreated;
-    canvasMarker;
-    canvasFrame;
-    ctxMarker;
-    ctxFrame;
-
     constructor(canvasMarker, canvasForFrame) {
         this.canvasMarker = canvasMarker;
         this.canvasForFrame = canvasForFrame;

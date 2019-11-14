@@ -65,7 +65,7 @@ class VideoStream {
             }
 
             if(this.currentCoreMode == this.MODE_SKIP_FRAME){
-                while(this.skippedFrame < 10){
+                while(this.skippedFrame < 30){
                     this.skippedFrame++;
                     return;
                 }
@@ -75,7 +75,11 @@ class VideoStream {
             if(this.currentCoreMode == this.MODE_SEND_DATA){
                 this.currentCoreMode = this.MODE_UNHANDLED;
 
-                Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
+                customCanvas.ctxMarker.beginPath();
+                customCanvas.ctxMarker.rect(0, 0, WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT);
+                customCanvas.ctxMarker.fillStyle = "red";
+                customCanvas.ctxMarker.fill();
+                // Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
         }
     }

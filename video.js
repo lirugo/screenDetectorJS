@@ -17,7 +17,7 @@ class VideoStream {
     init() {
         let constraints = {
             video: {
-                width: {min: 1024},
+                width: {min: 1280},
                 // optional: [
                 //     {minWidth: 1024},
                 //     {minWidth: 1280},

@@ -6,7 +6,28 @@ class CustomCanvas {
         this.ctxMarker = ctxMarker;
         this.ctxFrame = ctxFrame;
 
-        this.canvasForFrameCreated = false;
+        
+        this.markerLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
+        this.markerLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
+        this.aimLengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
+        this.aimLengthY = WIDNWDOW_WIDTH / 8 * 1.8;
+
+        this.aimTL = [
+            (WIDNWDOW_WIDTH / 1.25),
+            (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / 1.25)
+        ];
+        this.aimBR = [
+            (WIDNWDOW_WIDTH - WIDNWDOW_WIDTH / 1.35),
+            (WIDNWDOW_HEIGHT / 1.25)
+        ];
+        this.aimTR = [
+            (WIDNWDOW_WIDTH - WIDNWDOW_WIDTH / 1.25),
+            (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / 1.25)
+        ];
+        this.aimBL = [
+            (WIDNWDOW_WIDTH / 1.35),
+            (WIDNWDOW_HEIGHT / 1.25)
+        ];
     }
 
     init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT) {
@@ -24,36 +45,49 @@ class CustomCanvas {
         //Top left
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = colors[0];
-        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-greenLengthX, 0, WIDNWDOW_WIDTH, greenLengthY)
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-this.markerLengthX, 0, WIDNWDOW_WIDTH, this.markerLengthY)
         this.ctxMarker.stroke();
         //Top right
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = colors[1];
-        this.ctxMarker.fillRect(0, 0, greenLengthX, greenLengthY)
+        this.ctxMarker.fillRect(0, 0, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
         //Bottom right
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = colors[2];
-        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
+        this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-this.markerLengthY, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
         //Bottom left
         this.ctxMarker.beginPath();
         this.ctxMarker.fillStyle = colors[3];
-        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-greenLengthX, WIDNWDOW_HEIGHT-greenLengthY, greenLengthX, greenLengthY)
+        this.ctxMarker.fillRect(WIDNWDOW_WIDTH-this.markerLengthX, WIDNWDOW_HEIGHT-this.markerLengthY, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
     }
 
     drawAims(){
-        const aimTR = [
-            (WIDNWDOW_WIDTH - WIDNWDOW_WIDTH / 1.3),
-            (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / 1.25)
-        ];
-
+        //Top left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.strokeStyle = "#FF0000";
+        this.ctxMarker.lineWidth = 5;
+        this.ctxMarker.rect(this.aimTL[0]-this.aimLengthX/2, this.aimTL[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
+        this.ctxMarker.stroke();
         //Top right
         this.ctxMarker.beginPath();
         this.ctxMarker.strokeStyle = "#FF0000";
         this.ctxMarker.lineWidth = 5;
-        this.ctxMarker.rect(aimTR[0]-lengthX/2, aimTR[1]-lengthY/2, lengthX, lengthY)
+        this.ctxMarker.rect(this.aimTR[0]-this.aimLengthX/2, this.aimTR[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
+        this.ctxMarker.stroke();
+        //Bottom left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.strokeStyle = "#FF0000";
+        this.ctxMarker.lineWidth = 5;
+        this.ctxMarker.rect(this.aimBL[0]-this.aimLengthX/2, this.aimBL[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
+        this.ctxMarker.stroke();
+        //Bottom right
+        this.ctxMarker.beginPath();
+        this.ctxMarker.strokeStyle = "#FF0000";
+        this.ctxMarker.lineWidth = 5;
+        this.ctxMarker.rect(this.aimBR[0]-this.aimLengthX/2, this.aimBR[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
         this.ctxMarker.stroke();
     }
 

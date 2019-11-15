@@ -66,7 +66,7 @@ class Utils {
         if(
             hsv[0] > 70 && hsv[0] < 160 &&
             hsv[1] > 40 &&
-            hsv[2] > 30
+            hsv[2] > 20
         ){
             isGreen = true;
         }

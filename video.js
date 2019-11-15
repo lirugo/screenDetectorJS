@@ -51,9 +51,7 @@ class VideoStream {
             let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
 
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
-                let x = (this.videoWidth - this.videoWidth / 1.3);
-                let y = (this.videoHeight - this.videoHeight / 1.25);
-                let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
+                let aimDetected = Utils.aimDetected(imgData, customCanvas.aimTR[0], customCanvas.aimTR[1], this.videoWidth, this.videoHeight);
                 
                 if(aimDetected){
                     customCanvas.fillScreenWithColor("#FFFFFF");
@@ -73,7 +71,7 @@ class VideoStream {
                 this.currentCoreMode = this.MODE_UNHANDLED;
                 
                 Utils.showPreloader("Sending to server", "visible");
-                Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
+                // Utils.sendImage2Server(customCanvas.canvasForFrame.toDataURL());
             }
         }
     }

@@ -6,7 +6,6 @@ class CustomCanvas {
         this.ctxMarker = ctxMarker;
         this.ctxFrame = ctxFrame;
 
-        
         this.markerLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
         this.markerLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
         this.aimLengthX = WIDNWDOW_HEIGHT / 14 * 1.8;

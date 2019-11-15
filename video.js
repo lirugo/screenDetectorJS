@@ -55,7 +55,7 @@ class VideoStream {
                 
                 if(aimDetected){
                     customCanvas.fillScreenWithColor("#FFFFFF");
-                    this.currentCoreMode = this.MODE_SKIP_FRAME;
+                    // this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }
 

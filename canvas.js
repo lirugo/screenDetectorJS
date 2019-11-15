@@ -31,6 +31,9 @@ class CustomCanvas {
             (WIDNWDOW_WIDTH / this.AIM_CONSTANT_BOTTOM_X),
             (WIDNWDOW_HEIGHT / this.AIM_CONSTANT_BOTTOM_Y)
         ];
+
+
+        this.colors = ["#00FF00","#00FF00","#00FF00","#00FF00"];
     }
 
     init(WIDNWDOW_WIDTH, WIDNWDOW_HEIGHT) {
@@ -43,26 +46,25 @@ class CustomCanvas {
    }
 
     drawSideMarkers() {
-        let colors = ["#00FF00","#00FF00","#00FF00","#00FF00"];
         //TODO:: shake colors array
         //Top left
         this.ctxMarker.beginPath();
-        this.ctxMarker.fillStyle = colors[0];
+        this.ctxMarker.fillStyle = this.colors[0];
         this.ctxMarker.fillRect(WIDNWDOW_WIDTH-this.markerLengthX, 0, WIDNWDOW_WIDTH, this.markerLengthY)
         this.ctxMarker.stroke();
         //Top right
         this.ctxMarker.beginPath();
-        this.ctxMarker.fillStyle = colors[1];
+        this.ctxMarker.fillStyle = this.colors[1];
         this.ctxMarker.fillRect(0, 0, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
         //Bottom right
         this.ctxMarker.beginPath();
-        this.ctxMarker.fillStyle = colors[2];
+        this.ctxMarker.fillStyle = this.colors[2];
         this.ctxMarker.fillRect(0, WIDNWDOW_HEIGHT-this.markerLengthY, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
         //Bottom left
         this.ctxMarker.beginPath();
-        this.ctxMarker.fillStyle = colors[3];
+        this.ctxMarker.fillStyle = this.colors[3];
         this.ctxMarker.fillRect(WIDNWDOW_WIDTH-this.markerLengthX, WIDNWDOW_HEIGHT-this.markerLengthY, this.markerLengthX, this.markerLengthY)
         this.ctxMarker.stroke();
     }

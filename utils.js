@@ -1,5 +1,20 @@
 class Utils {
 
+    static screenDetected(imgData, aimTL, aimTR, aimBR, aimBL, width, height) {
+        let count = 0;
+        let aimTLDetected = this.aimDetected(imgData, aimTL[0], aimTL[1], width, height);
+        let aimBRDetected = this.aimDetected(imgData, aimBR[0], aimBR[1], width, height);
+        let aimTRDetected = this.aimDetected(imgData, aimTR[0], aimTR[1], width, height);
+        let aimBLDetected = this.aimDetected(imgData, aimBL[0], aimBL[1], width, height);
+
+        if(aimTLDetected) count++;
+        if(aimBRDetected) count++;
+        if(aimTRDetected) count++;
+        if(aimBLDetected) count++;
+
+        return count >= 3;
+    }
+
     static aimDetected(imgData, x, y, width, height){
         const halfLengthX = height / 14 * 1.8 / 2;
         const halfLengthY = width / 8 * 1.8 / 2;

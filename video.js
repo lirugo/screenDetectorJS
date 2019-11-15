@@ -51,9 +51,6 @@ class VideoStream {
             let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
 
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
-                let x = (this.videoWidth - this.videoWidth / 1.3);
-                let y = (this.videoHeight - this.videoHeight / 1.25);
-
                 let aimTL = [
                     (this.videoWidth / customCanvas.AIM_CONSTANT_TOP_X),
                     (this.videoHeight - this.videoHeight / customCanvas.AIM_CONSTANT_TOP_Y)
@@ -71,9 +68,9 @@ class VideoStream {
                     (this.videoHeight / customCanvas.AIM_CONSTANT_BOTTOM_Y)
                 ];
 
-                let aimDetected = Utils.aimDetected(imgData, aimBR[0], aimBR[1], this.videoWidth, this.videoHeight);
+                let screenDetected = Utils.screenDetected(imgData, aimTL, aimTR, aimBR, aimBL, this.videoWidth, this.videoHeight);
                 
-                if(aimDetected){
+                if(screenDetected){
                     // customCanvas.fillScreenWithColor("#FFFFFF");
                     customCanvas.drawAims("green");
                     // this.currentCoreMode = this.MODE_SKIP_FRAME;

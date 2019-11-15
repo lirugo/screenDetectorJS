@@ -13,12 +13,11 @@ class Utils {
             count++; 
             colors[0] = "#00FF00";
         }
-        
-        if(aimBRDetected) {
+        if(aimTRDetected) {
             count++;
             colors[1] = "#00FF00";
         }
-        if(aimTRDetected) {
+        if(aimBRDetected) {
             count++;
             colors[2] = "#00FF00";
         }

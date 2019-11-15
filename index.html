@@ -149,7 +149,7 @@
         </style>
     </head>
     <body>
-        <button class="fullScreenBtn" onclick="openFullScreen(document.documentElement)">Full screen 4</button>
+        <button class="fullScreenBtn" onclick="openFullScreen(document.documentElement)">Full screen 5</button>
 
         <div class="container">
             <section class="wrapper">
@@ -230,18 +230,7 @@
             }, 1000/videoStream.FPS);
 
             function openFullScreen(element) {
-                window.moveTo(0, 0);
-
-        if (document.all) {
-            top.window.resizeTo(screen.availWidth, screen.availHeight);
-        }
-
-        else if (document.layers || document.getElementById) {
-            if (top.window.outerHeight < screen.availHeight || top.window.outerWidth < screen.availWidth) {
-                top.window.outerHeight = screen.availHeight;
-                top.window.outerWidth = screen.availWidth;
-            }
-        }
+                document.documentElement.webkitrequestFullscreen()
             }
         </script>
     </body>

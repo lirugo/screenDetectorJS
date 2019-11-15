@@ -112,9 +112,24 @@
                     transform: rotate(360deg);
                 }
             }
+
+            .fullScreenBtn {
+                z-index:10; position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: none;
+                padding: 1em;
+                background-color: #4CAF50;
+                color: white;
+                text-align: center;
+                font-size: 1rem;
+            }
         </style>
     </head>
     <body>
+        <button class="fullScreenBtn" onclick="openFullScreen(document.documentElement)">Full screen</button>
+
         <div class="container">
             <section class="wrapper">
                 <!-- <h1 style="z-index: 1000; font-size: 4rem; color:red;">
@@ -193,8 +208,15 @@
                 videoStream.detectPhone(customCanvas);
             }, 1000/videoStream.FPS);
 
-            document.documentElement.requestFullScreen();
+            function openFullScreen(element) {
+                if(element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if(element.webkitrequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if(element.mozRequestFullscreen) {
+                    element.mozRequestFullScreen();
+                }
+            }
         </script>
-        
     </body>
 </html>

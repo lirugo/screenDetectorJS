@@ -136,6 +136,7 @@ class Utils {
                 if(res.data == 2)
                     status = "BROKEN";
 
+                Utils.hidePreloaderAnim();
                 Utils.showPreloader("PHONE STATUS - " + status, "visible");
                 console.log(TAG + "SEND STATUS " + res.status);
             })
@@ -143,6 +144,11 @@ class Utils {
                 Utils.showPreloader("Error on send " + error, "visible");
                 console.log(TAG + error);
             });
+    }
+
+    static hidePreloaderAnim(){
+        document.getElementById("loader").style.visibility = "hidden";
+
     }
 
     static showPreloader(message, visibility){

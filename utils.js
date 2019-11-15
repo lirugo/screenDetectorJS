@@ -130,7 +130,13 @@ class Utils {
                 image: image,
             })
             .then(res => { 
-                Utils.showPreloader("Image was send", "visible");
+                let status = "REPEAT";
+                if(res.data == 1)
+                    status = "SOLID";
+                if(res.data == 2)
+                    status = "BROKEN";
+
+                Utils.showPreloader("PHONE STATUS - " + status, "visible");
                 console.log(TAG + "SEND STATUS " + res.status);
             })
             .catch(error => {

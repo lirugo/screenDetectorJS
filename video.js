@@ -15,17 +15,24 @@ class VideoStream {
     }
 
     init() {
-        let constraints = {
-            video: {
-                width: {min: 1280},
-                // optional: [
-                //     {minWidth: 1024},
-                //     {minWidth: 1280},
-                //     {minWidth: 1920},
-                //     {minWidth: 2560},
-                // ]
-            }
-        };
+        if(Utils.isAndroid()){
+            let constraints = {
+                video: {
+                    optional: [
+                        {minWidth: 1024},
+                        {minWidth: 1280},
+                        {minWidth: 1920},
+                        {minWidth: 2560},
+                    ]
+                }
+            };
+        }else {
+            let constraints = {
+                video: {
+                    width: {min: 1280},
+                }
+            };
+        }
 
         navigator.mediaDevices.getUserMedia(constraints)
             .then(this.handleStreamSuccess)

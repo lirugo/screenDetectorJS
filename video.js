@@ -68,14 +68,12 @@ class VideoStream {
                     (this.videoHeight / customCanvas.AIM_CONSTANT_BOTTOM_Y)
                 ];
 
-                let screenDetected = Utils.screenDetected(imgData, aimTL, aimTR, aimBR, aimBL, this.videoWidth, this.videoHeight);
+                let screenDetected = Utils.screenDetected(customCanvas, imgData, aimTL, aimTR, aimBR, aimBL, this.videoWidth, this.videoHeight);
                 
                 if(screenDetected){
                     // customCanvas.fillScreenWithColor("#FFFFFF");
-                    customCanvas.drawAims("green");
+                    customCanvas.drawAims(["#FF0000", "#FF0000", "#FF0000", "#FF0000"]);
                     // this.currentCoreMode = this.MODE_SKIP_FRAME;
-                }else{
-                    customCanvas.drawAims("red");
                 }
             }
 

@@ -1,17 +1,33 @@
 class Utils {
 
-    static screenDetected(imgData, aimTL, aimTR, aimBR, aimBL, width, height) {
+    static screenDetected(customCanvas, imgData, aimTL, aimTR, aimBR, aimBL, width, height) {
         let count = 0;
         let aimTLDetected = this.aimDetected(imgData, aimTL[0], aimTL[1], width, height);
         let aimBRDetected = this.aimDetected(imgData, aimBR[0], aimBR[1], width, height);
         let aimTRDetected = this.aimDetected(imgData, aimTR[0], aimTR[1], width, height);
         let aimBLDetected = this.aimDetected(imgData, aimBL[0], aimBL[1], width, height);
 
-        if(aimTLDetected) count++;
-        if(aimBRDetected) count++;
-        if(aimTRDetected) count++;
-        if(aimBLDetected) count++;
+        let colors = ["#FF0000", "#FF0000", "#FF0000", "#FF0000"];
 
+        if(aimTLDetected) { 
+            count++; 
+            colors[0] = "#00FF00";
+        }
+        
+        if(aimBRDetected) {
+            count++;
+            colors[1] = "#00FF00";
+        }
+        if(aimTRDetected) {
+            count++;
+            colors[2] = "#00FF00";
+        }
+        if(aimBLDetected) {
+            count++;
+            colors[3] = "#00FF00";
+        }
+        customCanvas.drawAims(colors);
+                    
         return count >= 3;
     }
 

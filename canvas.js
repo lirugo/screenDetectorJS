@@ -67,30 +67,30 @@ class CustomCanvas {
         this.ctxMarker.stroke();
     }
 
-    drawAims(color){
+    drawAims(colors){
         //Top left
         this.ctxMarker.beginPath();
-        this.ctxMarker.strokeStyle = color;
+        this.ctxMarker.strokeStyle = colors[0];
         this.ctxMarker.lineWidth = 5;
         this.ctxMarker.rect(this.aimTL[0]-this.aimLengthX/2, this.aimTL[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
         this.ctxMarker.stroke();
         //Top right
         this.ctxMarker.beginPath();
-        this.ctxMarker.strokeStyle = color;
+        this.ctxMarker.strokeStyle = colors[1];
         this.ctxMarker.lineWidth = 5;
         this.ctxMarker.rect(this.aimTR[0]-this.aimLengthX/2, this.aimTR[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
         this.ctxMarker.stroke();
-        //Bottom left
-        this.ctxMarker.beginPath();
-        this.ctxMarker.strokeStyle = color;
-        this.ctxMarker.lineWidth = 5;
-        this.ctxMarker.rect(this.aimBL[0]-this.aimLengthX/2, this.aimBL[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
-        this.ctxMarker.stroke();
         //Bottom right
         this.ctxMarker.beginPath();
-        this.ctxMarker.strokeStyle = color;
+        this.ctxMarker.strokeStyle = colors[2];
         this.ctxMarker.lineWidth = 5;
         this.ctxMarker.rect(this.aimBR[0]-this.aimLengthX/2, this.aimBR[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
+        this.ctxMarker.stroke();
+        //Bottom left
+        this.ctxMarker.beginPath();
+        this.ctxMarker.strokeStyle = colors[3];
+        this.ctxMarker.lineWidth = 5;
+        this.ctxMarker.rect(this.aimBL[0]-this.aimLengthX/2, this.aimBL[1]-this.aimLengthY/2, this.aimLengthX, this.aimLengthY)
         this.ctxMarker.stroke();
     }
 

@@ -71,7 +71,7 @@ class VideoStream {
                     (this.videoHeight / customCanvas.AIM_CONSTANT_BOTTOM_Y)
                 ];
 
-                let aimDetected = Utils.aimDetected(imgData, aimBL[0], aimBL[1], this.videoWidth, this.videoHeight);
+                let aimDetected = Utils.aimDetected(imgData, aimBR[0], aimBR[1], this.videoWidth, this.videoHeight);
                 
                 if(aimDetected){
                     // customCanvas.fillScreenWithColor("#FFFFFF");

@@ -51,10 +51,31 @@ class VideoStream {
             let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
 
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
-                let aimDetected = Utils.aimDetected(imgData, customCanvas.aimTR[0], customCanvas.aimTR[1], this.videoWidth, this.videoHeight);
+                let x = (this.videoWidth - this.videoWidth / 1.3);
+                let y = (this.videoHeight - this.videoHeight / 1.25);
+
+                let aimTL = [
+                    (this.videoWidth / customCanvas.AIM_CONSTANT_TOP_X),
+                    (this.videoHeight - this.videoHeight / customCanvas.AIM_CONSTANT_TOP_Y)
+                ];
+                let aimTR = [
+                    (this.videoWidth - this.videoWidth / customCanvas.AIM_CONSTANT_TOP_X),
+                    (this.videoHeight - this.videoHeight / customCanvas.AIM_CONSTANT_TOP_Y)
+                ];
+                let aimBR = [
+                    (this.videoWidth - this.videoWidth / customCanvas.AIM_CONSTANT_BOTTOM_X),
+                    (this.videoHeight / customCanvas.AIM_CONSTANT_BOTTOM_Y)
+                ];
+                let aimBL = [
+                    (this.videoWidth / customCanvas.AIM_CONSTANT_BOTTOM_X),
+                    (this.videoHeight / customCanvas.AIM_CONSTANT_BOTTOM_Y)
+                ];
+
+                let aimDetected = Utils.aimDetected(imgData, x, y, this.videoWidth, this.videoHeight);
                 
                 if(aimDetected){
-                    customCanvas.fillScreenWithColor("#FFFFFF");
+                    // customCanvas.fillScreenWithColor("#FFFFFF");
+                    customCanvas.drawAims("green");
                     // this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }

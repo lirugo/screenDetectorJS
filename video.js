@@ -15,8 +15,9 @@ class VideoStream {
     }
 
     init() {
+        let constraints;
         if(Utils.isAndroid()){
-            let constraints = {
+            constraints= {
                 video: {
                     optional: [
                         {minWidth: 1024},
@@ -27,7 +28,7 @@ class VideoStream {
                 }
             };
         }else {
-            let constraints = {
+            constraints = {
                 video: {
                     width: {min: 1280},
                 }

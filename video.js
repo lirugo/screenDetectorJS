@@ -71,9 +71,9 @@ class VideoStream {
                 let screenDetected = Utils.screenDetected(customCanvas, imgData, aimTL, aimTR, aimBR, aimBL, this.videoWidth, this.videoHeight);
                 
                 if(screenDetected){
-                    // customCanvas.fillScreenWithColor("#FFFFFF");
-                    customCanvas.drawAims(["#00FF00", "#00FF00", "#00FF00", "#00FF00"]);
-                    // this.currentCoreMode = this.MODE_SKIP_FRAME;
+                    customCanvas.fillScreenWithColor("#FFFFFF");
+                    // customCanvas.drawAims(["#00FF00", "#00FF00", "#00FF00", "#00FF00"]);
+                    this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }
 

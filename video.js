@@ -72,7 +72,7 @@ class VideoStream {
                 
                 if(screenDetected){
                     // customCanvas.fillScreenWithColor("#FFFFFF");
-                    customCanvas.drawAims(["#FF0000", "#FF0000", "#FF0000", "#FF0000"]);
+                    customCanvas.drawAims(["#00FF00", "#00FF00", "#00FF00", "#00FF00"]);
                     // this.currentCoreMode = this.MODE_SKIP_FRAME;
                 }
             }

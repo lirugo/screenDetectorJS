@@ -11,10 +11,10 @@ class CustomCanvas {
         this.aimLengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
         this.aimLengthY = WIDNWDOW_WIDTH / 8 * 1.8;
 
-        this.AIM_CONSTANT_TOP_X = 1.25;
-        this.AIM_CONSTANT_TOP_Y = 1.25;
+        this.AIM_CONSTANT_TOP_X = 1.18;
+        this.AIM_CONSTANT_TOP_Y = 1.35;
         this.AIM_CONSTANT_BOTTOM_X = 1.35;
-        this.AIM_CONSTANT_BOTTOM_Y = 1.25;
+        this.AIM_CONSTANT_BOTTOM_Y = 1.35;
         this.aimTL = [
             (WIDNWDOW_WIDTH / this.AIM_CONSTANT_TOP_X),
             (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / this.AIM_CONSTANT_TOP_Y)

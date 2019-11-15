@@ -56,7 +56,7 @@ class Utils {
         if(this.isGreenXY(imgData, x+halfLengthX/2, y-halfLengthY/2)) count++;
         if(this.isGreenXY(imgData, x-halfLengthX/2, y+halfLengthY/2)) count++;
 
-        return count >= 3;
+        return count >= 2;
     }
 
     static isGreenXY(imgData, x, y) {

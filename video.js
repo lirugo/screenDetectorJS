@@ -77,6 +77,8 @@ class VideoStream {
                     // customCanvas.fillScreenWithColor("#FFFFFF");
                     customCanvas.drawAims("green");
                     // this.currentCoreMode = this.MODE_SKIP_FRAME;
+                }else{
+                    customCanvas.drawAims("red");
                 }
             }
 

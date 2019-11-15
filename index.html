@@ -128,7 +128,7 @@
         </style>
     </head>
     <body>
-        <button class="fullScreenBtn" onclick="openFullScreen(document.documentElement)">Full screen</button>
+        <button class="fullScreenBtn" onclick="openFullScreen(document.documentElement)">Full screen1</button>
 
         <div class="container">
             <section class="wrapper">
@@ -149,8 +149,8 @@
          <!-- Constants -->
          <script>  
             "use strict";          
-            // const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
-            const SEND_FRAME_URL = "http://192.168.88.244:8080/api/web/";
+            const SEND_FRAME_URL = "https://sc.smartalliance.eu/api/web/";
+            // const SEND_FRAME_URL = "http://192.168.88.244:8080/api/web/";
             const WIDNWDOW_WIDTH = window.innerWidth;
             const WIDNWDOW_HEIGHT = window.innerHeight;
             const TAG = "WEB TAG ";
@@ -209,13 +209,7 @@
             }, 1000/videoStream.FPS);
 
             function openFullScreen(element) {
-                if(element.requestFullscreen) {
-                    element.requestFullscreen();
-                } else if(element.webkitrequestFullscreen) {
-                    element.webkitRequestFullscreen();
-                } else if(element.mozRequestFullscreen) {
-                    element.mozRequestFullScreen();
-                }
+                element.webkitRequestFullscreen();
             }
         </script>
     </body>

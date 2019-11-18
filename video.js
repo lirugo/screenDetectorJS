@@ -60,7 +60,7 @@ class VideoStream {
 
             //Read QR code
             const code = jsQR(imgData.data, this.videoWidth, this.videoHeight);
-            let qrCode = document.getElementById("QRCode")
+            let qrCode = document.getElementById("QRCode");
 
             if (code) {
                 qrCode.innerText = code.data;

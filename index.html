@@ -153,7 +153,8 @@
 
             <img class="loader" 
                 style="width: 50%; height: auto; 
-                transform: translate(-30%, -30%);" 
+                transform: translate(-30%, -30%);
+                opacity: 0;" 
                 src="./QRCode.jpg"/>
 
             <div class="processing" id="processing">
@@ -221,11 +222,11 @@
             customCanvas.drawAims(["#FF0000", "#FF0000", "#FF0000", "#FF0000"]);
            
             //Run phone detection on each FPS
-            // setInterval(function(){
-            //     //Redraw side markers
+            setInterval(function(){
+                //Redraw side markers
 
-            //     videoStream.detectPhone(customCanvas);
-            // }, 1000/videoStream.FPS);
+                videoStream.detectPhone(customCanvas);
+            }, 1000/videoStream.FPS);
         </script>
     </body>
 </html>

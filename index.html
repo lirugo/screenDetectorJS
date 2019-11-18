@@ -131,18 +131,35 @@
     <body>
         <div class="container">
             <section class="wrapper">
-                <!-- <h1 style="z-index: 1000; font-size: 4rem; color:red;">
-                    2
-                </h1> -->
+               
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
                 <canvas id="canvasForFrame" class="canvasForFrame" ></canvas>
+
+                <div style="
+                    position: relative;
+                ">
+                    <div style="
+                        position: absolute;
+                        top: 50%;
+                        left: 10%;
+                    ">
+                        <h1 style="z-index: 10; color: red;" id="QRCode">
+                            UNKNOWN
+                        </h1>
+                    </div>
+                </div>
             </section>
+
+
+            
 
             <div class="processing" id="processing">
                 <div class="loader" id="loader"></div>    
                 <div class="alert" id="alert-message">Loading...</span>
             </div>
+
+        </div>
         </div>
 
          <!-- Constants -->
@@ -159,6 +176,8 @@
         <script src="utils.js"></script>
         <script src="video.js"></script>
         <script src="canvas.js"></script>
+
+        <script src="jsQR.js"></script>
 
         <script>
             // Setup Video Stream

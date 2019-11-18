@@ -58,6 +58,15 @@ class VideoStream {
             customCanvas.ctxFrame.drawImage(video, 0, 0, this.videoWidth, this.videoHeight, 0, 0, this.videoWidth, this.videoHeight);
             let imgData = customCanvas.ctxFrame.getImageData(0, 0, this.videoWidth, this.videoHeight);
 
+            //Read QR code
+            const code = jsQR(imgData.data, this.videoWidth, this.videoHeight);
+            let qrCode = document.getElementById("QRCode")
+
+            if (code) {
+                qrCode.innerText = code.data;
+                console.log("Found QR code", code);
+            }
+
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){
                 let aimTL = [
                     (this.videoWidth / customCanvas.AIM_CONSTANT_TOP_X),

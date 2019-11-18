@@ -236,7 +236,7 @@
 
                 videoStream.detectPhone(customCanvas);
 
-                QrScanner.scanImage(videoStream)
+                QrScanner.scanImage(videoElement)
                     .then(result => {
                         console.log(result);
                         document.getElementById("qrText").innerText = result;

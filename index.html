@@ -48,7 +48,7 @@
                 transform: scale(-1, 1);
             }
             .canvasForFrame {
-                z-index: 3;
+                z-index: 0;
                 position: fixed; 
                 top: 0; 
                 left: 0;
@@ -236,17 +236,15 @@
 
                 videoStream.detectPhone(customCanvas);
 
-                QrScanner.scanImage(canvasForFrame)
-                .then(result => {
-                    console.log(result);
-                    document.getElementById("qrText").innerText = result;
-                })
-                .catch(error => {
-                    console.log(error || 'No QR code found.');
-                    
-                    document.getElementById("qrText").innerText = "err";
-
-                })
+                QrScanner.scanImage(videoStream)
+                    .then(result => {
+                        console.log(result);
+                        document.getElementById("qrText").innerText = result;
+                    })
+                    .catch(error => {
+                        console.log(error || 'No QR code found.');
+                        document.getElementById("qrText").innerText = "err";
+                    })
             }, 1000/videoStream.FPS);
         </script>
     </body>

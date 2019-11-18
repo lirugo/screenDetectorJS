@@ -31,8 +31,8 @@ class Utils {
     }
 
     static aimDetected(imgData, x, y, width, height){
-        const halfLengthX = height / 14 * 1.8 / 2;
-        const halfLengthY = width / 8 * 1.8 / 2;
+        const halfLengthX = AIM_LENGTH_X / 2;
+        const halfLengthY = AIM_LENGTH_Y / 2;
 
         let count = 0;
                 

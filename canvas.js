@@ -8,13 +8,13 @@ class CustomCanvas {
 
         this.markerLengthX = WIDNWDOW_HEIGHT / 14 * 1.5;
         this.markerLengthY = WIDNWDOW_WIDTH / 8 * 1.5;
-        this.aimLengthX = WIDNWDOW_HEIGHT / 14 * 1.8;
-        this.aimLengthY = WIDNWDOW_WIDTH / 8 * 1.8;
+        this.aimLengthX = AIM_LENGTH_X;
+        this.aimLengthY = AIM_LENGTH_Y;
 
-        this.AIM_CONSTANT_TOP_X = 1.18;
-        this.AIM_CONSTANT_TOP_Y = 1.35;
+        this.AIM_CONSTANT_TOP_X = 1.28;
+        this.AIM_CONSTANT_TOP_Y = 1.28;
         this.AIM_CONSTANT_BOTTOM_X = 1.35;
-        this.AIM_CONSTANT_BOTTOM_Y = 1.35;
+        this.AIM_CONSTANT_BOTTOM_Y = 1.28;
         this.aimTL = [
             (WIDNWDOW_WIDTH / this.AIM_CONSTANT_TOP_X),
             (WIDNWDOW_HEIGHT - WIDNWDOW_HEIGHT / this.AIM_CONSTANT_TOP_Y)

@@ -131,33 +131,10 @@
     <body>
         <div class="container">
             <section class="wrapper">
-               
                 <video id="video" autoplay muted playsinline></video>
                 <canvas id="canvasMarker" class="canvasMarker"></canvas>
                 <canvas id="canvasForFrame" class="canvasForFrame" ></canvas>
-
-                <div style="
-                    position: relative;
-                ">
-                    <div style="
-                        position: absolute;
-                        top: 50%;
-                        left: 10%;
-                    ">
-                        <h1 style="z-index: 10; color: red;" id="QRCode">
-                            UNKNOWN
-                        </h1>
-                    </div>
-                </div>
             </section>
-
-            <img class="loader" 
-                style="
-                width: 60%; height: auto; 
-                transform: translate(-30%, -0%); 
-                transform: scale(-1, 1);
-                " 
-                src="./qrCode2.jpg"/>
 
             <div class="processing" id="processing">
                 <div class="loader" id="loader"></div>    
@@ -175,13 +152,14 @@
             const WIDNWDOW_HEIGHT = window.innerHeight;
             const TAG = "WEB TAG ";
             const FPS = 10;
+
+            const AIM_LENGTH_X = WIDNWDOW_HEIGHT / 14 * 2.8;
+            const AIM_LENGTH_Y = WIDNWDOW_WIDTH / 8 * 2.8;
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         <script src="utils.js"></script>
         <script src="video.js"></script>
         <script src="canvas.js"></script>
-
-        <script src="jsQR.js"></script>
 
         <script>
             // Setup Video Stream

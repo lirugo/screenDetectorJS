@@ -20,7 +20,7 @@ class VideoStream {
             constraints = {
                 video: {
                     optional: [
-                        {minWidth: 480},
+                        {maxWidth: 480},
                         // {minWidth: 1280},
                         // {minWidth: 1920},
                         // {minWidth: 2560},
@@ -30,7 +30,7 @@ class VideoStream {
         }else {
             constraints = {
                 video: {
-                    width: {min: 1280},
+                    width: {max: 480},
                 }
             };
         }

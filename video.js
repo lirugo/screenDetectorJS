@@ -65,6 +65,8 @@ class VideoStream {
             if (code) {
                 qrCode.innerText = code.data;
                 console.log("Found QR code", code);
+            }else{
+                qrCode.innerText = "UNKNOWN";
             }
 
             if(this.currentCoreMode == this.MODE_PHONE_DETECTING){

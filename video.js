@@ -1,3 +1,4 @@
+
 class VideoStream {    
     constructor(TAG, FPS, URL, videoElement){
         console.log(TAG + "Init Video Stream")
@@ -20,8 +21,8 @@ class VideoStream {
             constraints = {
                 video: {
                     optional: [
-                        {maxWidth: 480},
-                        // {minWidth: 1280},
+                        {maxWidth: 1024},
+                        {minWidth: 1280},
                         // {minWidth: 1920},
                         // {minWidth: 2560},
                     ]
@@ -50,7 +51,7 @@ class VideoStream {
         console.log(TAG + 'getUserMedia error: ', error);
     }
 
-    detectPhone(customCanvas) {
+    detectPhone(customCanvas, QrScanner) {
         if(
             this.videoWidth && this.videoHeight &&
             this.currentCoreMode != this.MODE_UNHANDLED
@@ -78,10 +79,22 @@ class VideoStream {
 
                 let screenDetected = Utils.screenDetected(customCanvas, imgData, aimTL, aimTR, aimBR, aimBL, this.videoWidth, this.videoHeight);
                 
-                if(false){
-                    customCanvas.fillScreenWithColor("#FFFFFF");
-                    // customCanvas.drawAims(["#00FF00", "#00FF00", "#00FF00", "#00FF00"]);
-                    this.currentCoreMode = this.MODE_SKIP_FRAME;
+                QrScanner.scanImage(document.getElementById("video"))
+                    .then(result => {
+                        // console.log(result);
+                        document.getElementById("qrText").innerText = result;
+                    })
+                    .catch(error => {
+                        // console.log(error || 'No QR code found.');
+                        document.getElementById("qrText").innerText = "err";
+                    })
+
+                if(screenDetected){
+                    if(document.getElementById("qrText").innerText == "Ver1"){
+                        customCanvas.fillScreenWithColor("#FFFFFF");
+                        // customCanvas.drawAims(["#00FF00", "#00FF00", "#00FF00", "#00FF00"]);
+                        this.currentCoreMode = this.MODE_SKIP_FRAME;
+                    }
                 }
             }
 

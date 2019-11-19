@@ -189,6 +189,9 @@
         <script src="canvas.js"></script>
 
         <script type="module">
+            import QrScanner from './qr-scanner.min.js';
+            QrScanner.WORKER_PATH = './qr-scanner-worker.min.js';
+
             // Setup Video Stream
             var videoElement = document.getElementById('video');
             var videoStream = new VideoStream(TAG, FPS, URL, videoElement);
@@ -228,26 +231,13 @@
             //Draw aims
             customCanvas.drawAims(["#FF0000", "#FF0000", "#FF0000", "#FF0000"]);
            
-
-            import QrScanner from './qr-scanner.min.js';
-            QrScanner.WORKER_PATH = './qr-scanner-worker.min.js';
-
-
             //Run phone detection on each FPS
             setInterval(function(){
                 //Redraw side markers
 
-                videoStream.detectPhone(customCanvas);
+                videoStream.detectPhone(customCanvas, QrScanner);
 
-                QrScanner.scanImage(videoElement)
-                    .then(result => {
-                        console.log(result);
-                        document.getElementById("qrText").innerText = result;
-                    })
-                    .catch(error => {
-                        console.log(error || 'No QR code found.');
-                        document.getElementById("qrText").innerText = "err";
-                    })
+               
             }, 1000/videoStream.FPS);
         </script>
     </body>
